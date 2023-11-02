@@ -46,7 +46,22 @@ return {
 
         -- Tsserver usually works poorly. Sorry you work with bad languages
         -- You can remove this line if you know what you're doing :)
+        -- Config for eslint
         if client.name == 'tsserver' then
+          vim.api.nvim_create_autocmd('BufWritePre', {
+            callback = function(event)
+              local eslint_client = vim.lsp.get_active_clients({ bufnr = event.buf, name = 'eslint' })[1]
+              if eslint_client then
+                local diag = vim.diagnostic.get(
+                  event.buf,
+                  { namespace = vim.lsp.diagnostic.get_namespace(eslint_client.id) }
+                )
+                if #diag > 0 then
+                  vim.cmd('EslintFixAll')
+                end
+              end
+            end,
+          })
           return
         end
 
