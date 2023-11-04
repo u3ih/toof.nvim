@@ -232,7 +232,9 @@ require('lazy').setup({
       -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
     },
     keys = {
-      { "<Leader>e", "<Cmd>Neotree toggle<CR>", remap = false, silent = true, desc = "<Cmd>Neotree toggle<CR>" },
+      { "<Leader>nt", "<Cmd>Neotree toggle<CR>",  remap = false, silent = true, desc = "Neotree toggle" },
+      { "<Leader>nr", "<Cmd>Neotree reveal<CR>",  remap = false, silent = true, desc = "Neotree reveal" },
+      { "<Leader>nb", "<Cmd>Neotree buffers<CR>", remap = false, silent = true, desc = "Neotree buffers" },
     },
     deactivate = function()
       vim.cmd([[Neotree close]])
@@ -626,6 +628,7 @@ require('which-key').register {
   ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
   ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
   ['<leader>b'] = { name = '[B]uffer', _ = 'which_key_ignore' },
+  ['<leader>n'] = { name = '[N]eotree', _ = 'which_key_ignore' },
 }
 
 -- mason-lspconfig requires that these setup functions are called in this order
