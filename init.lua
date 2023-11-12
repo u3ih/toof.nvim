@@ -149,9 +149,6 @@ require('lazy').setup({
       { "<leader>sT", "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>",    desc = "Todo/Fix/Fixme" },
     },
   },
-  {
-    "mg979/vim-visual-multi"
-  },
   -- buffer remove
   {
     "echasnovski/mini.bufremove",
@@ -262,6 +259,9 @@ require('lazy').setup({
   },
   {
     "xiyaowong/transparent.nvim",
+  },
+  {
+    "kshenoy/vim-signature",
   },
   {
     "gbprod/yanky.nvim",

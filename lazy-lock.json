@@ -35,8 +35,8 @@
   "transparent.nvim": { "branch": "main", "commit": "3af6232c8d39d51062702e875ff6407c1eeb0391" },
   "vim-fugitive": { "branch": "master", "commit": "46eaf8918b347906789df296143117774e827616" },
   "vim-rhubarb": { "branch": "master", "commit": "ee69335de176d9325267b0fd2597a22901d927b1" },
+  "vim-signature": { "branch": "master", "commit": "6bc3dd1294a22e897f0dcf8dd72b85f350e306bc" },
   "vim-sleuth": { "branch": "master", "commit": "1cc4557420f215d02c4d2645a748a816c220e99b" },
-  "vim-visual-multi": { "branch": "master", "commit": "aec289a9fdabaa0ee6087d044d75b32e12084344" },
   "which-key.nvim": { "branch": "main", "commit": "4433e5ec9a507e5097571ed55c02ea9658fb268a" },
   "yanky.nvim": { "branch": "main", "commit": "9268018e92d02650a94e39dd5f5903c542f7ea11" }
 }
