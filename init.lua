@@ -264,6 +264,26 @@ require('lazy').setup({
     "xiyaowong/transparent.nvim",
   },
   {
+    "gbprod/yanky.nvim",
+    -- need install sqllite: brew reinstall sqlite
+    dependencies = { { "kkharji/sqlite.lua", enabled = not jit.os:find("Windows") } },
+    opts = {
+      highlight = { timer = 250 },
+      ring = {
+        history_length = 20,
+        storage = jit.os:find("Windows") and "shada" or "sqlite"
+      }
+    },
+    keys = {
+      -- stylua: ignore
+      {
+        "<leader>p",
+        function() require("telescope").extensions.yank_history.yank_history({}) end,
+        desc = "Open Yank History"
+      },
+    }
+  },
+  {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
     opts = {
@@ -407,7 +427,7 @@ require('lazy').setup({
   },
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
-  --       These are some example plugins that I've included in the kickstart repository.
+  --       These are some example plugins that I've included inhttps://img-c.udemycdn.com/course/480x270/791690_95af_2.jpg the kickstart repository.
   --       Uncomment any of the lines below to enable them.
   require 'kickstart.plugins.autoformat',
   -- require 'kickstart.plugins.debug',
