@@ -399,7 +399,7 @@ require('lazy').setup({
     keys = {
       {
         -- Customize or remove this keymap to your liking
-        "<leader>f",
+        "<leader>fb",
         function()
           require("conform").format({ async = true, lsp_fallback = true })
         end,
@@ -424,6 +424,13 @@ require('lazy').setup({
       -- If you want the formatexpr, here is the place to set it
       vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
     end,
+  },
+  {
+    "NStefan002/speedtyper.nvim",
+    cmd = "Speedtyper",
+    opts = {
+      -- your config
+    }
   },
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
@@ -531,6 +538,8 @@ require('telescope').setup {
 
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
+
+vim.keymap.set('n', '<leader>fe', "<Cmd>EslintFixAll<CR>", { desc = 'Fix Eslint' })
 
 -- See `:help telescope.builtin`
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
