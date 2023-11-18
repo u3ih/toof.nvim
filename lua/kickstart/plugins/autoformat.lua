@@ -61,7 +61,7 @@ return {
                 end
               end
               -- config for prettier with conform.nvim
-              require("conform").format({ bufnr = event.buf })
+              -- require("conform").format({ bufnr = event.buf })
             end,
           })
           return

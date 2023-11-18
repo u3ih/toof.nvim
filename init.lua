@@ -261,9 +261,6 @@ require('lazy').setup({
     "xiyaowong/transparent.nvim",
   },
   {
-    "kshenoy/vim-signature",
-  },
-  {
     "gbprod/yanky.nvim",
     -- need install sqllite: brew reinstall sqlite
     dependencies = { { "kkharji/sqlite.lua", enabled = not jit.os:find("Windows") } },
@@ -702,6 +699,7 @@ require('which-key').register {
   ['<leader>b'] = { name = '[B]uffer', _ = 'which_key_ignore' },
   ['<leader>n'] = { name = '[N]eotree', _ = 'which_key_ignore' },
   ['<leader>p'] = { name = '[Y]ankyYank', _ = 'which_key_ignore' },
+  ['<leader>f'] = { name = '[F]ormat', _ = 'which_key_ignore' },
 }
 
 -- mason-lspconfig requires that these setup functions are called in this order
