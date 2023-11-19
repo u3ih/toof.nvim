@@ -310,7 +310,7 @@ return {
 				},
 				servers = {
 					['lua_ls'] = { 'lua' },
-					['rust_analyzer'] = { 'rust' },
+					-- ['rust_analyzer'] = { 'rust' },
 					['tsserver'] = { 'javascript', 'typescript' },
 				}
 			})

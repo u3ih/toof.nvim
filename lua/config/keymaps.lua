@@ -86,8 +86,14 @@ map({ 'n', 'x', 'o' }, 'H', '^', opts)
 map({ 'n', 'x', 'o' }, 'L', '$', opts)
 
 -- Navigate buffers
-map("n", "<Right>", ":bnext<CR>", opts)
-map("n", "<Left>", ":bprevious<CR>", opts)
+map("n", "<S-l>", ":bnext<CR>", opts)
+map("n", "<S-h>", ":bprevious<CR>", opts)
+
+-- Clear search with <esc>
+map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
+
+-- save file
+map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
 
 -- Panes resizing
 map("n", "+", ":vertical resize +5<CR>")

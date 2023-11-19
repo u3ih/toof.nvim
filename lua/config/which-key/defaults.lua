@@ -39,15 +39,15 @@ return {
     --   "<cmd>BufferLinePickClose<cr>",
     --   "Pick which buffer to close",
     -- },
-    -- l = { "<cmd>BufferLineCloseLeft<cr>", "Close all to the left" },
-    -- r = {
-    --   "<cmd>BufferLineCloseRight<cr>",
-    --   "Close all to the right",
-    -- },
-    -- o = {
-    --   "<Cmd>BufferLineCloseOthers<CR>",
-    --   "Delete other buffers"
-    -- },
+    l = { "<cmd>BufferLineCloseLeft<cr>", "Close all to the left" },
+    r = {
+      "<cmd>BufferLineCloseRight<cr>",
+      "Close all to the right",
+    },
+    o = {
+      "<Cmd>BufferLineCloseOthers<CR>",
+      "Delete other buffers"
+    },
     d = {
       ":bd<CR>",
       "Close Buffer"
@@ -60,8 +60,8 @@ return {
     --   "<cmd>BufferLineSortByExtension<cr>",
     --   "Sort by language",
     -- },
-    -- p = { "<cmd>BufferLineTogglePin<CR>", "Toggle pin" },
-    -- P = { "<cmd>BufferLineGroupClose ungrouped<CR>", "Delete non-pinned buffers" },
+    p = { "<cmd>BufferLineTogglePin<CR>", "Toggle pin" },
+    P = { "<cmd>BufferLineGroupClose ungrouped<CR>", "Delete non-pinned buffers" },
   },
   g = {
     name = "+Git",
@@ -111,14 +111,14 @@ return {
   },
   s = {
     name = "+Search",
-    f = { "<cmd>Telescope find_files<cr>", "Find File (CWD)" },
+    f = { "<cmd>Telescope find_files hidden=true<cr>", "Find File (CWD)" },
     h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
     H = { "<cmd>Telescope highlights<cr>", "Find highlight groups" },
     M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
     o = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
     R = { "<cmd>Telescope registers<cr>", "Registers" },
-    t = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
-    T = { "<cmd>Telescope grep_string<cr>", "Grep String" },
+    g = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
+    G = { "<cmd>Telescope grep_string<cr>", "Grep String" },
     k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
     C = { "<cmd>Telescope commands<cr>", "Commands" },
     l = { "<cmd>Telescope resume<cr>", "Resume last search" },
