@@ -1,21 +1,31 @@
-local colors = require("config.colors").colors;
+local colors = require("config.colors").colors
 return {
 	"akinsho/bufferline.nvim",
 	enabled = false,
 	event = "VeryLazy",
 	version = "*",
 	dependencies = "nvim-tree/nvim-web-devicons",
+	config = function(_, opts)
+		require("bufferline").setup(opts)
+		-- Fix bufferline when restoring a session
+		vim.api.nvim_create_autocmd("BufAdd", {
+			callback = function()
+				vim.schedule(function()
+					pcall(nvim_bufferline)
+				end)
+			end,
+		})
+	end,
 	opts = {
 		options = {
 			separator_style = { "", "" },
-			indicator = { style = "none" },
-			show_tab_indicators = false,
+			-- indicator = { style = "none" },
+			-- show_tab_indicators = false,
 
-			always_show_bufferline = true,
+			always_show_bufferline = false,
 			show_close_icon = false,
 			show_buffer_close_icons = false,
-			-- separator_style = { "", "" },
-			tab_size = 0,
+			-- tab_size = 0,
 			max_name_length = 25,
 			offsets = {
 				{

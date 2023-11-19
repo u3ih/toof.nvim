@@ -42,10 +42,10 @@ return {
 						local max_width = 0
 						if max_width ~= 0 and #vim_item.abbr > max_width then
 							vim_item.abbr = string.sub(vim_item.abbr, 1, max_width - 1) ..
-							    icons.ui.Ellipsis
+									icons.ui.Ellipsis
 						end
 						vim_item.kind = lspkind.presets.default[vim_item.kind] ..
-						    " " .. vim_item.kind
+								" " .. vim_item.kind
 
 						if entry.source.name == "copilot" then
 							vim_item.kind = icons.git.Octoface
@@ -132,7 +132,7 @@ return {
 						name = "nvim_lsp",
 						entry_filter = function(entry, ctx)
 							local kind = require("cmp.types.lsp").CompletionItemKind
-							    [entry:get_kind()]
+									[entry:get_kind()]
 							if kind == "Snippet" and ctx.prev_context.filetype == "java" then
 								return false
 							end
@@ -211,7 +211,7 @@ return {
 					'jsonls',
 					'bashls',
 					'vimls',
-					'rust-analyzer',
+					-- 'rust-analyzer',
 				},
 				handlers = {
 					lsp_zero.default_setup,

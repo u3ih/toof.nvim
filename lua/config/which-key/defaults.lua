@@ -32,22 +32,22 @@ return {
     name = "Buffers",
     -- j = { "<cmd>BufferLinePick<cr>", "Jump" },
     f = { "<cmd>Telescope buffers previewer=false<cr>", "Find" },
-    b = { "<cmd>BufferLineCyclePrev<cr>", "Previous" },
-    n = { "<cmd>BufferLineCycleNext<cr>", "Next" },
+    -- b = { "<cmd>BufferLineCyclePrev<cr>", "Previous" },
+    -- n = { "<cmd>BufferLineCycleNext<cr>", "Next" },
     W = { "<cmd>noautocmd w<cr>", "Save without formatting (noautocmd)" },
     -- e = {
     --   "<cmd>BufferLinePickClose<cr>",
     --   "Pick which buffer to close",
     -- },
-    l = { "<cmd>BufferLineCloseLeft<cr>", "Close all to the left" },
-    r = {
-      "<cmd>BufferLineCloseRight<cr>",
-      "Close all to the right",
-    },
-    o = {
-      "<Cmd>BufferLineCloseOthers<CR>",
-      "Delete other buffers"
-    },
+    -- l = { "<cmd>BufferLineCloseLeft<cr>", "Close all to the left" },
+    -- r = {
+    --   "<cmd>BufferLineCloseRight<cr>",
+    --   "Close all to the right",
+    -- },
+    -- o = {
+    --   "<Cmd>BufferLineCloseOthers<CR>",
+    --   "Delete other buffers"
+    -- },
     d = {
       ":bd<CR>",
       "Close Buffer"
@@ -60,8 +60,8 @@ return {
     --   "<cmd>BufferLineSortByExtension<cr>",
     --   "Sort by language",
     -- },
-    p = { "<cmd>BufferLineTogglePin<CR>", "Toggle pin" },
-    P = { "<cmd>BufferLineGroupClose ungrouped<CR>", "Delete non-pinned buffers" },
+    -- p = { "<cmd>BufferLineTogglePin<CR>", "Toggle pin" },
+    -- P = { "<cmd>BufferLineGroupClose ungrouped<CR>", "Delete non-pinned buffers" },
   },
   g = {
     name = "+Git",
