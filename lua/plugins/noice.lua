@@ -4,6 +4,7 @@ return {
 	opts = {
 		-- add any options here
 		background_colour = "#000000",
+		position = "bottom_right", -- Set the position to right bottom
 	},
 	dependencies = {
 		-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries

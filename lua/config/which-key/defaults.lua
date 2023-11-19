@@ -35,10 +35,10 @@ return {
     -- b = { "<cmd>BufferLineCyclePrev<cr>", "Previous" },
     -- n = { "<cmd>BufferLineCycleNext<cr>", "Next" },
     W = { "<cmd>noautocmd w<cr>", "Save without formatting (noautocmd)" },
-    -- e = {
-    --   "<cmd>BufferLinePickClose<cr>",
-    --   "Pick which buffer to close",
-    -- },
+    e = {
+      "<cmd>BufferLinePickClose<cr>",
+      "Pick which buffer to close",
+    },
     l = { "<cmd>BufferLineCloseLeft<cr>", "Close all to the left" },
     r = {
       "<cmd>BufferLineCloseRight<cr>",

@@ -3,16 +3,6 @@ local map = vim.keymap.set
 
 -- [[ Basic Keymaps ]]
 
--- Keymaps for better default experience
--- See `:help vim.keymap.set()`
-map({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
-
--- Move to window using the <ctrl> hjkl keys
-map('n', '<C-h>', '<C-w>h', { desc = 'Go to left window', remap = true })
-map('n', '<C-j>', '<C-w>j', { desc = 'Go to lower window', remap = true })
-map('n', '<C-k>', '<C-w>k', { desc = 'Go to upper window', remap = true })
-map('n', '<C-l>', '<C-w>l', { desc = 'Go to right window', remap = true })
-
 -- Remap for dealing with word wrap
 map('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 map('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
@@ -29,7 +19,7 @@ require('telescope').setup {
       },
     },
     file_ignore_patterns = {
-      "node_modules", "build", "dist", "yarn.lock"
+      "node_modules", "build", "dist", "yarn.lock", "next",
     },
   },
 }
@@ -48,21 +38,13 @@ map("n", "<C-u>", "<C-u>zz", opts)
 map("v", "J", ":m '>+1<CR>gv=gv", opts)
 map("v", "K", ":m '<-2<CR>gv=gv", opts)
 
--- Fast saving
-map("n", "<Leader>w", ":write!<CR>", opts)
-map("n", "<Leader>q", ":q!<CR>", opts)
-
--- Remap for dealing with visual line wraps
-map("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
-map("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
-
 -- better indenting
 map("v", "<", "<gv")
 map("v", ">", ">gv")
 
 -- paste over currently selected text without yanking it
-map("v", "p", '"_dp')
-map("v", "P", '"_dP')
+map("v", "p", '"_dP')
+map("v", "P", '"_dp')
 
 -- copy everything between { and } including the brackets
 -- p puts text after the cursor,
@@ -74,23 +56,18 @@ map("n", "j", "gj", opts)
 map("n", "k", "gk", opts)
 
 -- quick jump in insert mode
-map("i", "<C-e>", "<Esc>A", opts)
-map("i", "<C-b>", "<Esc>I", opts)
+map("i", "<C-l>", "<ESC>A", opts)
+map("i", "<C-h>", "<ESC>I", opts)
+map({ 'n', 'x', 'o' }, '<C-h>', '^', opts)
+map({ 'n', 'x', 'o' }, '<C-l>', '$', opts)
 
 -- Exit on jj and jk
 map("i", "jj", "<ESC>", opts)
 map("i", "jk", "<ESC>", opts)
 
--- Move to start/end of line
-map({ 'n', 'x', 'o' }, 'H', '^', opts)
-map({ 'n', 'x', 'o' }, 'L', '$', opts)
-
 -- Navigate buffers
 map("n", "<S-l>", ":bnext<CR>", opts)
 map("n", "<S-h>", ":bprevious<CR>", opts)
-
--- Clear search with <esc>
-map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
 
 -- save file
 map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
@@ -103,13 +80,9 @@ map("n", "-", ":resize -5<CR>")
 
 -- Map enter to ciw in normal mode
 map("n", "<CR>", "ciw", opts)
-map("n", "<BS>", 'ci', opts)
 
 -- map ; to resume last search
 -- map("n", ";", "<cmd>Telescope resume<cr>", opts)
-
--- search current buffer
-map("n", "<C-s>", ":Telescope current_buffer_fuzzy_find<CR>", opts)
 
 -- Split line with X
 map('n', 'X', ':keeppatterns substitute/\\s*\\%#\\s*/\\r/e <bar> normal! ==^<cr>', { silent = true })
