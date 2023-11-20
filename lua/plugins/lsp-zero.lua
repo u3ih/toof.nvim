@@ -211,6 +211,7 @@ return {
 					'jsonls',
 					'bashls',
 					'vimls',
+					'prettier',
 					-- 'rust-analyzer',
 				},
 				handlers = {
