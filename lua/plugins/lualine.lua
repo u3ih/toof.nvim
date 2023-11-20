@@ -42,7 +42,7 @@ return {
 				},
 			},
 			sections = {
-				lualine_a = {},
+				lualine_a = { 'mode' },
 				lualine_b = {},
 				lualine_c = {
 					{

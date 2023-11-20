@@ -11,17 +11,17 @@ map('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
 require('telescope').setup {
-  defaults = {
-    mappings = {
-      i = {
-        ['<C-u>'] = false,
-        ['<C-d>'] = false,
-      },
-    },
-    file_ignore_patterns = {
-      "node_modules", "build", "dist", "yarn.lock", "next",
-    },
-  },
+	defaults = {
+		mappings = {
+			i = {
+				['<C-u>'] = false,
+				['<C-d>'] = false,
+			},
+		},
+		file_ignore_patterns = {
+			"node_modules", "build", "dist", "yarn.lock", "next",
+		},
+	},
 }
 
 map('n', '<leader>fe', "<Cmd>EslintFixAll<CR>", { desc = 'Fix Eslint' })
@@ -43,13 +43,10 @@ map("v", "<", "<gv")
 map("v", ">", ">gv")
 
 -- paste over currently selected text without yanking it
+-- p puts text before the cursor,
+-- P puts text after the cursor.
 map("v", "p", '"_dP')
 map("v", "P", '"_dp')
-
--- copy everything between { and } including the brackets
--- p puts text after the cursor,
--- P puts text before the cursor.
-map("n", "YY", "va{Vy", opts)
 
 -- Move line on the screen rather than by line in the file
 map("n", "j", "gj", opts)
@@ -88,42 +85,11 @@ map("n", "<CR>", "ciw", opts)
 map('n', 'X', ':keeppatterns substitute/\\s*\\%#\\s*/\\r/e <bar> normal! ==^<cr>', { silent = true })
 
 -- Select all
-map('n', '<C-a>', 'ggVG', opts)
-
--- write file in current directory
--- :w %:h/<new-file-name>
-map('n', '<C-n>', ':w %:h/', opts)
+-- map('n', '<C-a>', 'ggVGy', opts)
 
 -- delete forward
 -- w{number}dw
 -- delete backward
 -- w{number}db
 
--- fix conflict with
--- `vim.lsp.handlers["textDocument/hover"]`
--- `vim.lsp.handlers["textDocument/signatureHelp"]
-
-require("noice").setup({
-  lsp = {
-    -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
-    override = {
-      ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-      ["vim.lsp.util.stylize_markdown"] = true,
-      ["cmp.entry.get_documentation"] = true,
-    },
-    signature = {
-      enabled = false,
-    },
-    hover = {
-      enabled = false,
-    },
-  },
-  -- you can enable a preset for easier configuration
-  presets = {
-    command_palette = true,       -- position the cmdline and popupmenu together
-    long_message_to_split = true, -- long messages will be sent to a split
-    inc_rename = false,           -- enables an input dialog for inc-rename.nvim
-    lsp_doc_border = false,       -- add a border to hover docs and signature help
-  },
-})
 map('n', '<C-P>', ':lua require("config.utils").toggle_go_test()<CR>', opts)

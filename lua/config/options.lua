@@ -58,6 +58,10 @@ vim.o.hlsearch = true
 -- Keep signcolumn on by default
 vim.wo.signcolumn = 'yes'
 
+vim.diagnostic.config({
+  underline = true,
+})
+
 for k, v in pairs(options) do
   vim.opt[k] = v
 end

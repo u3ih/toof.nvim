@@ -9,6 +9,7 @@ return {
 		"nvim-lua/plenary.nvim",
 		"nvim-tree/nvim-web-devicons",
 		"MunifTanjim/nui.nvim",
+		-- "3rd/image.nvim"
 	},
 	event = "VeryLazy",
 	config = function()
@@ -50,10 +51,10 @@ return {
 					},
 				},
 			},
-			window = {
-				position = "float",
-				width = 35,
-			},
+			-- window = {
+			-- 	position = "float",
+			-- 	width = 35,
+			-- },
 			filesystem = {
 				use_libuv_file_watcher = true,
 				filtered_items = {

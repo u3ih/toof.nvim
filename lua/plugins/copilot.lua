@@ -1,7 +1,7 @@
 return {
 	{
 		"zbirenbaum/copilot.lua",
-		enabled = true,
+		enabled = false,
 		cmd = "Copilot",
 		event = "InsertEnter",
 		config = function()
@@ -17,7 +17,7 @@ return {
 						open = "<M-CR>",
 					},
 					layout = {
-						position = "bottom",             -- | top | left | right
+						position = "bottom", -- | top | left | right
 						ratio = 0.4,
 					},
 				},

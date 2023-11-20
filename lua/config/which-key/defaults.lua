@@ -6,6 +6,7 @@ return {
   A = "Swap previous param",
   U = { ":UndotreeToggle<CR>", "Toggle UndoTree" },
   o = { ":Telescope buffers<CR>", "Open Buffer" },
+  x = { ":NoiceDismiss<CR>", "Dismiss Notice" },
   u = {
     name = "UI",
     c = { "<cmd>lua require('config.utils').toggle_set_color_column()<CR>", "Toggle Color Line" },

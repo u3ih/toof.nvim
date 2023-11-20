@@ -32,12 +32,12 @@ return {
 						overlay2 = "#8C7A58",
 						overlay1 = "#735F3F",
 						overlay0 = "#958272",
-						surface2 = "#4B4F51",
-						surface1 = "#2A2D2E",
+						-- surface2 = "#4B4F51",
+						-- surface1 = "#2A2D2E",
 						surface0 = "#232728",
-						base = "#0e1010",
+						-- base = "#0e1010",
 						-- base = "#1D2021",
-						-- base = "#0E1419", -- dark color
+						base = "#0E1419", -- dark color
 						mantle = "#191C1D",
 						crust = "#151819",
 					},
@@ -56,7 +56,7 @@ return {
 					types = {},
 					operators = {},
 				},
-				transparent_background = false,
+				transparent_background = true,
 				show_end_of_buffer = false,
 				custom_highlights = function(colors)
 					return {
