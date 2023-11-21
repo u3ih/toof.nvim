@@ -55,8 +55,6 @@ map("n", "k", "gk", opts)
 -- quick jump in insert mode
 map("i", "<C-l>", "<ESC>A", opts)
 map("i", "<C-h>", "<ESC>I", opts)
-map({ 'n', 'x', 'o' }, '<C-h>', '^', opts)
-map({ 'n', 'x', 'o' }, '<C-l>', '$', opts)
 
 -- Exit on jj and jk
 map("i", "jj", "<ESC>", opts)
