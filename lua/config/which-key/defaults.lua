@@ -19,10 +19,10 @@ return {
     l    = { "<cmd>lua require('persistence').load({ last = true })<cr>", "Load Last Session" },
     d    = { "<cmd>lua require('persistence').stop()<cr>", "Stop Persistence" },
   },
-  -- m = {
-  --   name = "Marks",
-  --   m = { "<cmd>Telescope marks<cr>", "Marks" },
-  -- },
+  m = {
+    name = "Marks",
+    m = { "<cmd>Telescope marks<cr>", "Marks" },
+  },
   r = {
     name = "Replace",
     r = { "<cmd>lua require('spectre').open()<cr>", "Replace" },
@@ -97,7 +97,7 @@ return {
 
     p = { "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>", "previous diagnostic" },
     n = { "<cmd>lua vim.lsp.diagnostic.goto_next()<cr>", "next diagnostic" },
-    -- e = { "<cmd>Telescope quickfix<cr>", "Telescope Quickfix" },
+    e = { "<cmd>Telescope quickfix<cr>", "Telescope Quickfix" },
   },
   s = {
     name = "+Search",

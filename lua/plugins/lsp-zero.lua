@@ -250,7 +250,7 @@ return {
 						root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json",
 							"jsconfig.json"),
 						filetypes = { 'javascript', 'javascriptreact', 'typescript',
-							'typescriptreact', 'vue', 'svelte' },
+							'typescriptreact' },
 						cmd = { "typescript-language-server", "--stdio" },
 					}),
 

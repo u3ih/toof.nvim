@@ -56,16 +56,16 @@ map("n", "k", "gk", opts)
 map("i", "<C-l>", "<ESC>A", opts)
 map("i", "<C-h>", "<ESC>I", opts)
 
--- Exit on jj and jk
-map("i", "jj", "<ESC>", opts)
-map("i", "jk", "<ESC>", opts)
-
 -- Navigate buffers
 map("n", "<S-l>", ":bnext<CR>", opts)
 map("n", "<S-h>", ":bprevious<CR>", opts)
 
 -- save file
 map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
+
+-- undo
+map({ "x", "n", "s" }, "<C-z>", ":u<cr>", { desc = "Undo" })
+map("i", "<C-z>", "<C-o>:u<cr>", { desc = "Undo in insert mode" })
 
 -- Panes resizing
 map("n", "+", ":vertical resize +5<CR>")
