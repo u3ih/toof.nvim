@@ -66,6 +66,7 @@ return {
   },
   g = {
     name = "+Git",
+    t = { "<cmd>lua require 'gitsigns'.toggle_current_line_blame()<cr>", "Toggle Line blame" },
     k = { "<cmd>lua require 'gitsigns'.prev_hunk({navigation_message = false})<cr>", "Prev Hunk" },
     l = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame" },
     p = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },

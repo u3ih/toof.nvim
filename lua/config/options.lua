@@ -57,6 +57,8 @@ vim.wo.relativenumber = true
 vim.o.hlsearch = true
 -- Keep signcolumn on by default
 vim.wo.signcolumn = 'yes'
+vim.g.indent_blankline_show_current_context = true
+vim.g.indent_blankline_context_patterns = { 'class', 'function', 'method', 'if', 'while', 'for' }
 
 for k, v in pairs(options) do
   vim.opt[k] = v

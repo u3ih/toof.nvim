@@ -27,7 +27,7 @@ require('telescope').setup {
 map('n', '<leader>fe', "<Cmd>EslintFixAll<CR>", { desc = 'Fix Eslint' })
 
 -- See `:help telescope.builtin`
-map('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
+-- map('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
 map('n', '<leader>sb', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
 
 -- Keep cursor centered when scrolling
