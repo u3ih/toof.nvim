@@ -229,3 +229,14 @@ api.nvim_create_autocmd('LspAttach', {
     })
   end,
 })
+
+
+api.nvim_create_autocmd('ExitPre', {
+  callback = function()
+    if eval('@%') == '' then
+      vim.cmd("q!")
+    else
+      vim.cmd("wq!")
+    end
+  end
+})

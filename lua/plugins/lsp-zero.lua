@@ -209,7 +209,7 @@ return {
 					'eslint',
 					'lua_ls',
 					'jsonls',
-					'bashls',
+					'cssls',
 					'vimls',
 					-- 'rust-analyzer',
 				},
