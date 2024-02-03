@@ -37,6 +37,7 @@ api.nvim_create_autocmd("TextYankPost", {
 
 -- go to last loc when opening a buffer
 api.nvim_create_autocmd("BufReadPost", {
+  desc = 'Open file at the last position it was edited earlier',
   callback = function()
     local mark = api.nvim_buf_get_mark(0, '"')
     local lcount = api.nvim_buf_line_count(0)

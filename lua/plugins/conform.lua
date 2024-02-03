@@ -16,14 +16,19 @@ return {
 	opts = {
 		formatters_by_ft = {
 			-- ["typescript"] = { "prettier" },
-			["typescriptreact"] = { "prettier" },
+			-- ["typescriptreact"] = { "prettier" },
 			["css"] = { "prettier" },
 			["scss"] = { "prettier" },
 			["less"] = { "prettier" },
 			["html"] = { "prettier" },
 			["json"] = { "prettier" },
 			["jsonc"] = { "prettier" },
-			["yaml"] = { "prettier" },
+			-- ["yaml"] = { "prettier" },
+		},
+		format_on_save = {
+			lsp_fallback = true,
+			async = false,
+			timeout_ms = 500,
 		},
 	},
 	init = function()

@@ -1,3 +1,8 @@
+function live_grep_fixed_string()
+  local conf = require('telescope.config').values
+  require('telescope.builtin').live_grep({ vimgrep_arguments = table.insert(conf.vimgrep_arguments, '--fixed-strings') })
+end
+
 return {
   mode = { "n", "v" },
   p = { "<cmd>Telescope treesitter<CR>", "List Symbols" },
@@ -109,7 +114,8 @@ return {
     o = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
     R = { "<cmd>Telescope registers<cr>", "Registers" },
     g = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
-    G = { "<cmd>Telescope grep_string<cr>", "Grep String" },
+    G = { "<cmd>lua live_grep_fixed_string()<cr>", "Live grep fixed string" },
+    -- G = { "<cmd>Telescope grep_string<cr>", "Grep String" },
     k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
     C = { "<cmd>Telescope commands<cr>", "Commands" },
     l = { "<cmd>Telescope resume<cr>", "Resume last search" },
