@@ -138,7 +138,7 @@ return {
     n = { "<cmd>lua require ('todo-comments').jump_next()<cr>", "Next todo comment" },
     p = { "<cmd>lua require ('todo-comments').jump_prev()<cr>", "Previous todo comment" },
   },
-  D = {
+  d = {
     name = "Debug",
     b = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Breakpoint" },
     c = { "<cmd>lua require'dap'.continue()<cr>", "Continue" },

@@ -24,7 +24,6 @@ return {
 			local trouble = require("trouble.providers.telescope")
 
 			telescope.setup {
-				file_ignore_patterns = { "%.git/." },
 				defaults = {
 					mappings = {
 						i = {
@@ -39,7 +38,7 @@ return {
 					previewer = false,
 					-- hidden = true,
 					prompt_prefix = "   ",
-					file_ignore_patterns = { "node_modules", "package-lock.json", "build", "dist", "yarn.lock", "next" },
+					file_ignore_patterns = { "%.git/.", "node_modules", "package.json", "package-lock.json", "build", "dist", "yarn.lock", "next" },
 					initial_mode = "insert",
 					select_strategy = "reset",
 					sorting_strategy = "ascending",
@@ -196,7 +195,7 @@ return {
 			}
 			telescope.load_extension('fzf')
 			telescope.load_extension('ui-select')
-			telescope.load_extension('refactoring')
+			-- telescope.load_extension('refactoring')
 			telescope.load_extension('dap')
 			telescope.load_extension("zoxide")
 			telescope.load_extension("frecency")
