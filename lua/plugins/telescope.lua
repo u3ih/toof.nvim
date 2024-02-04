@@ -30,6 +30,8 @@ return {
 						i = {
 							["<esc>"] = actions.close,
 							["<C-t>"] = trouble.open_with_trouble,
+							['<C-u>'] = false,
+							['<C-d>'] = false,
 						},
 
 						n = { ["<C-t>"] = trouble.open_with_trouble },
@@ -37,7 +39,7 @@ return {
 					previewer = false,
 					-- hidden = true,
 					prompt_prefix = "   ",
-					file_ignore_patterns = { "node_modules", "package-lock.json" },
+					file_ignore_patterns = { "node_modules", "package-lock.json", "build", "dist", "yarn.lock", "next" },
 					initial_mode = "insert",
 					select_strategy = "reset",
 					sorting_strategy = "ascending",
@@ -100,6 +102,7 @@ return {
 					live_grep = {
 						only_sort_text = true,
 						previewer = true,
+						-- additional_args = { "--fixed-strings" },
 						layout_config = {
 							horizontal = {
 								width = 0.9,

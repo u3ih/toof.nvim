@@ -7,29 +7,6 @@ local map = vim.keymap.set
 map('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 map('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
-
--- [[ Configure Telescope ]]
--- See `:help telescope` and `:help telescope.setup()`
-require('telescope').setup {
-	defaults = {
-		mappings = {
-			i = {
-				['<C-u>'] = false,
-				['<C-d>'] = false,
-			},
-		},
-		file_ignore_patterns = {
-			"node_modules", "build", "dist", "yarn.lock", "next",
-		},
-	},
-}
-
-map('n', '<leader>fe', "<Cmd>EslintFixAll<CR>", { desc = 'Fix Eslint' })
-
--- See `:help telescope.builtin`
--- map('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
-map('n', '<leader>sb', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
-
 -- Keep cursor centered when scrolling
 map("n", "<C-d>", "<C-d>zz", opts)
 map("n", "<C-u>", "<C-u>zz", opts)

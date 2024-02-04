@@ -231,7 +231,7 @@ api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
-
+-- avoid untitled file when exit
 api.nvim_create_autocmd('ExitPre', {
   callback = function()
     if eval('@%') == '' then
