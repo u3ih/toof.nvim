@@ -79,7 +79,7 @@ return {
       "Undo Stage Hunk",
     },
     g = {
-      "<cmd>LazyGit<cr>",
+      "<cmd>:LazyGit<cr>",
       "Lazygit"
     },
     o = { "<cmd>Telescope git_status<cr>", "Open changed file" },

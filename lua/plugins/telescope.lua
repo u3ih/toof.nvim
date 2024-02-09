@@ -49,6 +49,9 @@ return {
 						prompt_position = "top",
 						preview_cutoff = 120,
 					},
+					path_display = {
+						truncate = 3,
+					}
 				},
 				pickers = {
 					find_files = {
