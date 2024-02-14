@@ -93,7 +93,7 @@ return {
     l = { "<cmd>TroubleToggle document_diagnostics<cr>", "Document Diagnostics (Trouble)" },
     L = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Workspace Diagnostics (Trouble)" },
     w = { "<cmd>Telescope diagnostics<cr>", "Diagnostics" },
-    t = { [[ <Esc><Cmd>lua require('telescope').extensions.refactoring.refactors()<CR>]], "Refactor" },
+    r = { [[ <Esc><Cmd>lua require('telescope').extensions.refactoring.refactors()<CR>]], "Refactor" },
     h = { "<cmd>lua require('config.utils').toggle_inlay_hints()<CR>", "Toggle Inlay Hints" },
 
     p = { "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>", "previous diagnostic" },

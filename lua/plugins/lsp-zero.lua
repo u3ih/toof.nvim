@@ -171,7 +171,8 @@ return {
 		dependencies = {
 			{ 'hrsh7th/cmp-nvim-lsp' },
 			{ 'williamboman/mason-lspconfig.nvim' },
-			{ 'b0o/schemastore.nvim' }
+			{ 'b0o/schemastore.nvim' },
+			{ 'WhoIsSethDaniel/mason-tool-installer.nvim' }
 		},
 		config = function()
 			local lsp_zero = require('lsp-zero')
@@ -203,6 +204,12 @@ return {
 			local lspconfig = require('lspconfig')
 
 			require('mason').setup({})
+			require('mason-tool-installer').setup({
+				ensure_installed = {
+					'prettier',
+					-- "eslint_d"
+				}
+			})
 			require('mason-lspconfig').setup({
 				ensure_installed = {
 					'tsserver',
@@ -303,17 +310,17 @@ return {
 				},
 			})
 
-			lsp_zero.format_on_save({
-				format_opts = {
-					async = false,
-					timeout_ms = 10000,
-				},
-				servers = {
-					['lua_ls'] = { 'lua' },
-					-- ['rust_analyzer'] = { 'rust' },
-					['tsserver'] = { 'javascript', 'typescript' },
-				}
-			})
+			-- lsp_zero.format_on_save({
+			-- 	format_opts = {
+			-- 		async = false,
+			-- 		timeout_ms = 10000,
+			-- 	},
+			-- 	servers = {
+			-- 		['lua_ls'] = { 'lua' },
+			-- 		-- ['rust_analyzer'] = { 'rust' },
+			-- 		['tsserver'] = { 'javascript', 'typescript' },
+			-- 	}
+			-- })
 
 			lsp_zero.set_preferences({
 				suggest_lsp_servers = false,
