@@ -180,7 +180,7 @@ return {
 
 			lsp_zero.on_attach(function(client, bufnr)
 				lsp_zero.default_keymaps({ buffer = bufnr })
-				opts = { buffer = bufnr, silent = true }
+				local opts = { buffer = bufnr, silent = true }
 
 				vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
 				vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
@@ -218,6 +218,7 @@ return {
 					'jsonls',
 					'cssls',
 					'vimls',
+					'tailwindcss',
 					-- 'rust-analyzer',
 				},
 				handlers = {
@@ -309,18 +310,6 @@ return {
 					})
 				},
 			})
-
-			-- lsp_zero.format_on_save({
-			-- 	format_opts = {
-			-- 		async = false,
-			-- 		timeout_ms = 10000,
-			-- 	},
-			-- 	servers = {
-			-- 		['lua_ls'] = { 'lua' },
-			-- 		-- ['rust_analyzer'] = { 'rust' },
-			-- 		['tsserver'] = { 'javascript', 'typescript' },
-			-- 	}
-			-- })
 
 			lsp_zero.set_preferences({
 				suggest_lsp_servers = false,
