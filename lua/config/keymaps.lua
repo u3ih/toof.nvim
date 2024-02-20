@@ -11,6 +11,17 @@ map('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 map("n", "<C-d>", "<C-d>zz", opts)
 map("n", "<C-u>", "<C-u>zz", opts)
 
+map("n", "J", "mzJ`z", opts)
+map("n", "n", "nzzzv")
+map("n", "N", "Nzzzv")
+-- quick jump diagnostic
+map("n", "<C-k>", "<cmd>cnext<CR>zz")
+map("n", "<C-j>", "<cmd>cprev<CR>zz")
+map("n", "<leader>k", "<cmd>lnext<CR>zz")
+map("n", "<leader>j", "<cmd>lprev<CR>zz")
+-- better multiple refactor in file
+map("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
 -- Move selected line / block of text in visual mode
 map("v", "J", ":m '>+1<CR>gv=gv", opts)
 map("v", "K", ":m '<-2<CR>gv=gv", opts)
