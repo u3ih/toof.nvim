@@ -36,6 +36,9 @@ return {
 			local luasnip     = require('luasnip')
 			local utils       = require('config.utils')
 			cmp.setup({
+				matching = {
+					disallow_partial_fuzzy_matching = false
+				},
 				formatting = {
 					fields = { "kind", "abbr", "menu" },
 					format = function(entry, vim_item)
@@ -73,12 +76,12 @@ return {
 							copilot = "(Copilot)",
 							treesitter = "(TreeSitter)",
 						})[entry.source.name]
-						vim_item.dup = ({
-							buffer = 1,
-							path = 1,
-							nvim_lsp = 0,
-							luasnip = 1,
-						})[entry.source.name] or 0
+						-- vim_item.dup = ({
+						-- 	buffer = 1,
+						-- 	path = 1,
+						-- 	nvim_lsp = 0,
+						-- 	luasnip = 1,
+						-- })[entry.source.name] or 0
 						return vim_item
 					end,
 				},
