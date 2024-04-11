@@ -4,6 +4,7 @@ return {
 	enabled = true,
 	dependencies = {
 		"rcarriga/nvim-dap-ui",
+		"nvim-neotest/nvim-nio",
 		"theHamsta/nvim-dap-virtual-text",
 		"nvim-telescope/telescope-dap.nvim",
 		"folke/neodev.nvim",
@@ -21,7 +22,7 @@ return {
 
 		local lldb = {
 			name = "Launch lldb",
-			type = "lldb", -- matches the adapter
+			type = "lldb",   -- matches the adapter
 			request = "launch", -- could also attach to a currently running process
 			program = function()
 				return vim.fn.input(
@@ -41,6 +42,6 @@ return {
 		}
 
 		dapui.setup()
-		virtual_text.setup()
+		virtual_text.setup({})
 	end
 }

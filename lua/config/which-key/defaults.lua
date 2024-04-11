@@ -122,6 +122,7 @@ return {
     e = { "<cmd>Telescope frecency<cr>", "Frecency" },
     b = { "<cmd>Telescope buffers<cr>", "Buffers" },
     p = { "<cmd>AerialToggle!<cr>", "Areal Toggle" },
+    r = { [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]] },
     d = {
       name = "+DAP",
       c = { "<cmd>Telescope dap commands<cr>", "Dap Commands" },
