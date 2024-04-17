@@ -2,7 +2,7 @@ return {
 	{
 		'nvim-telescope/telescope.nvim',
 		cmd = 'Telescope',
-		version = false,
+		-- version = false,
 		lazy = true,
 		dependencies = {
 			'nvim-lua/plenary.nvim',
@@ -13,6 +13,7 @@ return {
 			'telescope-dap.nvim',
 			'kkharji/sqlite.lua',
 			'nvim-telescope/telescope-frecency.nvim',
+			"olacin/telescope-cc.nvim"
 			-- {
 			--   "nvim-telescope/telescope-file-browser.nvim",
 			--   dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
@@ -22,6 +23,7 @@ return {
 			local telescope = require('telescope')
 			local actions = require('telescope.actions')
 			local trouble = require("trouble.providers.telescope")
+			local z_utils = require("telescope._extensions.zoxide.utils")
 
 			telescope.setup {
 				defaults = {
@@ -169,6 +171,24 @@ return {
 							},
 						})
 					},
+					zoxide = {
+						prompt_title = "[ Walking on the shoulders of TJ ]",
+						mappings = {
+							default = {
+								after_action = function(selection)
+									print("Update to (" .. selection.z_score .. ") " .. selection.path)
+								end
+							},
+							["<C-s>"] = {
+								before_action = function(selection) print("before C-s") end,
+								action = function(selection)
+									vim.cmd.edit(selection.path)
+								end
+							},
+							-- Opens the selected entry in a new split
+							["<C-q>"] = { action = z_utils.create_basic_command("split") },
+						},
+					},
 					frecency = {
 						default_workspace = 'CWD',
 						show_scores = true,
@@ -180,6 +200,19 @@ return {
 							"*/lua-language-server/*",
 						},
 					},
+					conventional_commits = {
+            theme = "ivy", -- custom theme
+            action = function(entry)
+                -- entry = {
+                --     display = "feat       A new feature",
+                --     index = 7,
+                --     ordinal = "feat",
+                --     value = feat"
+                -- }
+                vim.print(entry)
+            end,
+            include_body_and_footer = true, -- Add prompts for commit body and footer
+        },
 					-- file_browser = {
 					--   -- theme = "",
 					--   previewer = true,
@@ -202,6 +235,7 @@ return {
 			telescope.load_extension('dap')
 			telescope.load_extension("zoxide")
 			telescope.load_extension("frecency")
+			telescope.load_extension("conventional_commits")
 			-- telescope.load_extension("file_browser")
 		end
 	},

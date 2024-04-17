@@ -162,7 +162,7 @@ return {
       "Neotree reveal"
     },
     b = {
-      "<Cmd>Neotree buffers<CR",
+      "<Cmd>Neotree buffers<CR>",
       "Neotree buffers"
     },
   },

@@ -77,3 +77,6 @@ map('n', 'X', ':keeppatterns substitute/\\s*\\%#\\s*/\\r/e <bar> normal! ==^<cr>
 -- w{number}db
 
 map('n', '<C-P>', ':lua require("config.utils").toggle_go_test()<CR>', opts)
+
+-- quickfix actions
+map("n", "<leader>qf", "<cmd>lua vim.lsp.buf.code_action()<CR>")
