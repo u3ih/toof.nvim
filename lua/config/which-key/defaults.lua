@@ -1,3 +1,21 @@
+function vim.getVisualSelection()
+	vim.cmd('noau normal! "vy"')
+	local text = vim.fn.getreg('v')
+	vim.fn.setreg('v', {})
+
+	text = string.gsub(text, "\n", "")
+	if #text > 0 then
+		return text
+	else
+		return ''
+	end
+end
+-- Live grep with selected string
+function searchWithCurrentSelectedText()
+	local text = vim.getVisualSelection()
+	require('telescope.builtin').live_grep({ default_text = text, additional_args={"--fixed-strings"} })
+end
+
 return {
   mode = { "n", "v" },
   p = { "<cmd>Telescope treesitter<CR>", "List Symbols" },
@@ -108,9 +126,7 @@ return {
     M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
     o = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
     R = { "<cmd>Telescope registers<cr>", "Registers" },
-    g = { "<cmd>lua require('telescope.builtin').live_grep({additional_args={'--fixed-strings'}})<cr>", "Live grep fixed string" },
-    G = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
-    -- G = { "<cmd>Telescope grep_string<cr>", "Grep String" },
+    g = { '<cmd>lua searchWithCurrentSelectedText()<cr>', "Live grep fixed string" },
     k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
     C = { "<cmd>Telescope commands<cr>", "Commands" },
     l = { "<cmd>Telescope resume<cr>", "Resume last search" },
@@ -135,7 +151,7 @@ return {
   T = {
     name = "+Todo",
     t = { "<cmd>TodoTrouble<cr>", "Todo (Trouble)" },
-    T = { "<cmd>TodoTrouble keywords=TODO,FIX,FIXMEcr>", "Todo/Fix/Fixme (Trouble)" },
+    T = { "<cmd>TodoTrouble keywords=TODO,FIX,FIXME<cr>", "Todo/Fix/Fixme (Trouble)" },
     n = { "<cmd>lua require ('todo-comments').jump_next()<cr>", "Next todo comment" },
     p = { "<cmd>lua require ('todo-comments').jump_prev()<cr>", "Previous todo comment" },
   },
