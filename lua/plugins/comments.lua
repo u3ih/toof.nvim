@@ -1,6 +1,7 @@
 return {
 	{
 		'folke/todo-comments.nvim',
+		event = "VeryLazy",
 		dependencies = { 'nvim-lua/plenary.nvim' },
 		opts = {
 			-- your configuration comes here
@@ -12,6 +13,7 @@ return {
 	{ 
 		'numToStr/Comment.nvim', 
 		opts = {},
+		event = "VeryLazy",
 		dependencies = {
 			"JoosepAlviste/nvim-ts-context-commentstring"
 		},

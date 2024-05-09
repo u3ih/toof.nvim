@@ -13,27 +13,9 @@ return {
 			desc = "Format buffer",
 		},
 	},
-	-- config = function()
-	-- 	vim.api.nvim_create_autocmd('BufWritePre', {
-	-- 		callback = function(event)
-	-- 			local eslint_client = vim.lsp.get_active_clients({ bufnr = event.buf, name = 'eslint' })[1]
-	-- 			if eslint_client then
-	-- 				local diag = vim.diagnostic.get(
-	-- 					event.buf,
-	-- 					{ namespace = vim.lsp.diagnostic.get_namespace(eslint_client.id) }
-	-- 				)
-	-- 				if #diag > 0 then
-	-- 					vim.cmd('EslintFixAll')
-	-- 				end
-	-- 			end
-	-- 			-- config for prettier with conform.nvim
-	-- 			-- require("conform").format({ bufnr = event.buf })
-	-- 		end,
-	-- 	})
-	-- end,
 	opts = {
 		formatters_by_ft = {
-			-- ["javascript"] = { "eslint_d" }, // eslint_d too slow so i use custom cmd
+			-- ["javascript"] = { "eslint_d" }, -- eslint_d too slow so i use custom cmd
 			-- ["typescript"] = { "eslint_d" },
 			-- ["typescriptreact"] = { "eslint_d" },
 			-- ["javascriptreact"] = { "eslint_d" },
@@ -47,11 +29,15 @@ return {
 			-- ["yaml"] = { "prettier" },
 		},
 		format_on_save = function(bufnr)
+			-- keep eslint-lsp version is 4.8.0 because in 4.10.0 diagnostic cant show eslint message
 			local eslint_client = vim.lsp.get_active_clients({ bufnr = bufnr, name = 'eslint' })[1]
+
 			if eslint_client then
+				local eslint_diag_ns = vim.lsp.diagnostic.get_namespace(eslint_client.id);
+
 				local diag = vim.diagnostic.get(
 					bufnr,
-					{ namespace = vim.lsp.diagnostic.get_namespace(eslint_client.id) }
+					{ namespace = eslint_diag_ns }
 				)
 				if #diag > 0 then
 					vim.cmd('EslintFixAll')
@@ -68,7 +54,7 @@ return {
 			return {
 				lsp_fallback = true,
 				async = false,
-				timeout_ms = 500,
+				timeout_ms = 1000,
 			}, on_format
 		end
 	},

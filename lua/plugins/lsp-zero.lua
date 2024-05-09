@@ -2,7 +2,7 @@ return {
 	{
 		'VonHeikemen/lsp-zero.nvim',
 		branch = 'v3.x',
-		lazy = true,
+		lazy = false,
 		config = false,
 		init = function()
 			-- Disable automatic setup, we are doing it manually
@@ -179,6 +179,7 @@ return {
 		},
 		config = function()
 			local lsp_zero = require('lsp-zero')
+
 			lsp_zero.extend_lspconfig()
 
 			lsp_zero.on_attach(function(client, bufnr)
@@ -241,12 +242,12 @@ return {
 							},
 						},
 					}),
-					lspconfig.solidity.setup({
-						cmd = { "nomicfoundation-solidity-language-server", "--stdio" },
-						filetypes = { "solidity", "sol" },
-						root_dir = require("lspconfig.util").find_git_ancestor,
-						single_file_support = true,
-					}),
+					-- lspconfig.solidity.setup({
+					-- 	cmd = { "nomicfoundation-solidity-language-server", "--stdio" },
+					-- 	filetypes = { "solidity", "sol" },
+					-- 	root_dir = require("lspconfig.util").find_git_ancestor,
+					-- 	single_file_support = true,
+					-- }),
 
 					lspconfig.jsonls.setup({
 						settings = {
@@ -265,11 +266,14 @@ return {
 						cmd = { "typescript-language-server", "--stdio" },
 					}),
 
+
 					lspconfig.eslint.setup({
-						filestypes = { 'javascript', 'javascriptreact', 'typescript',
+						filetypes = { 'javascript', 'javascriptreact', 'typescript',
 							'typescriptreact' },
 						settings = {
-							workingDirectory = { mode = 'auto' },
+							workingDirectory = {
+								mode = "auto"
+							},
 							format = { enable = true },
 							lint = { enable = true },
 						},
@@ -304,18 +308,19 @@ return {
 							},
 						},
 					}),
-					lspconfig.terraformls.setup({
-						cmd = { "terraform-ls", "serve" },
-						filetypes = { "terraform", "tf", "terraform-vars" },
-						-- root_dir = lspconfig.util.root_pattern(".terraform", ".git"),
-						root_dir = lspconfig.util.root_pattern("*.tf", "*.terraform", "*.tfvars",
-							"*.hcl", "*.config"),
-					})
+
+					-- lspconfig.terraformls.setup({
+					-- 	cmd = { "terraform-ls", "serve" },
+					-- 	filetypes = { "terraform", "tf", "terraform-vars" },
+					-- 	-- root_dir = lspconfig.util.root_pattern(".terraform", ".git"),
+					-- 	root_dir = lspconfig.util.root_pattern("*.tf", "*.terraform", "*.tfvars",
+					-- 		"*.hcl", "*.config"),
+					-- })
 				},
 			})
 
 			lsp_zero.set_preferences({
-				suggest_lsp_servers = false,
+				suggest_lsp_servers = true,
 			})
 
 			lsp_zero.set_sign_icons({
@@ -330,7 +335,7 @@ return {
 				underline        = true,
 				virtual_text     = true,
 				signs            = true,
-				update_in_insert = false,
+				update_in_insert = true,
 				severity_sort    = true,
 				float            = {
 					source = "always",
