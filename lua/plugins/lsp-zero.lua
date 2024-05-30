@@ -324,10 +324,10 @@ return {
 			})
 
 			lsp_zero.set_sign_icons({
-				error = "E",
-				warn = "W",
-				hint = "H",
-				info = "I",
+				error = "🤬",
+				warn = "😤",
+				info = "🤔",
+				hint = "🤯",
 			})
 
 			vim.diagnostic.config({
