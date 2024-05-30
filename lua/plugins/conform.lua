@@ -29,7 +29,7 @@ return {
 			-- ["yaml"] = { "prettier" },
 		},
 		format_on_save = function(bufnr)
-			-- keep eslint-lsp version is 4.8.0 because in 4.10.0 diagnostic cant show eslint message
+			-- keep eslint-lsp version is 4.8.0 because in 4.10.0 diagnostic cant show eslint message with nvim version < 0.10
 			local eslint_client = vim.lsp.get_active_clients({ bufnr = bufnr, name = 'eslint' })[1]
 
 			if eslint_client then

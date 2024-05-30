@@ -1,5 +1,6 @@
 return {
 	"windwp/nvim-ts-autotag",
+	lazy = true,
 	opts = {
 		autotag = {
 			enable = true,
