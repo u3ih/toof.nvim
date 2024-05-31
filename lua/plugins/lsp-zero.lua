@@ -217,7 +217,7 @@ return {
 			require('mason-lspconfig').setup({
 				ensure_installed = {
 					'tsserver',
-					'eslint',
+					'eslint@4.8.0',
 					'lua_ls',
 					'jsonls',
 					'cssls',
@@ -323,22 +323,25 @@ return {
 				suggest_lsp_servers = true,
 			})
 
-			lsp_zero.set_sign_icons({
-				error = "🤬",
-				warn = "😤",
-				info = "🤔",
-				hint = "🤯",
-			})
-
 			vim.diagnostic.config({
-				title            = false,
 				underline        = true,
 				virtual_text     = true,
-				signs            = true,
+				signs            = {
+					text = {
+            [vim.diagnostic.severity.ERROR] = '🤬',
+            [vim.diagnostic.severity.WARN] = '😤',
+						[vim.diagnostic.severity.INFO] = '🤔',
+            [vim.diagnostic.severity.HINT] = '🤯'
+					},
+					numhl = {
+            [vim.diagnostic.severity.ERROR] = 'ErrorMsg',
+						[vim.diagnostic.severity.WARN] = 'WarningMsg',
+					},
+				},
 				update_in_insert = true,
 				severity_sort    = true,
 				float            = {
-					source = "always",
+					source = true,
 					style = "minimal",
 					border = "rounded",
 					header = "",

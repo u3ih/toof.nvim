@@ -7,7 +7,7 @@ return {
 		config = function()
 			require("catppuccin").setup({
 				background = {
-					light = "latte",
+					-- light = "latte",
 					dark = "mocha",
 				},
 				color_overrides = {
@@ -34,9 +34,7 @@ return {
 						overlay0 = "#958272",
 						-- surface2 = "#4B4F51",
 						-- surface1 = "#2A2D2E",
-						surface0 = "#232728",
-						-- base = "#0e1010",
-						-- base = "#1D2021",
+						surface0 = "#332728",
 						base = "#0E1419", -- dark color
 						mantle = "#191C1D",
 						crust = "#151819",
@@ -146,6 +144,7 @@ return {
 				end,
 			})
 
+			-- vim.api.nvim_command("set termguicolors")
 			vim.api.nvim_command("colorscheme catppuccin")
 		end,
 	},

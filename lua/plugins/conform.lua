@@ -30,15 +30,22 @@ return {
 		},
 		format_on_save = function(bufnr)
 			-- keep eslint-lsp version is 4.8.0 because in 4.10.0 diagnostic cant show eslint message with nvim version < 0.10
-			local eslint_client = vim.lsp.get_active_clients({ bufnr = bufnr, name = 'eslint' })[1]
+			local eslint_client = vim.lsp.get_clients({ bufnr = bufnr, name = 'eslint' })[1]
 
 			if eslint_client then
 				local eslint_diag_ns = vim.lsp.diagnostic.get_namespace(eslint_client.id);
 
-				local diag = vim.diagnostic.get(
+				local diag = vim.diagnostic.count(
 					bufnr,
-					{ namespace = eslint_diag_ns }
+					{
+						namespace = eslint_diag_ns,
+						severity = {
+							vim.diagnostic.severity.WARN,
+							vim.diagnostic.severity.ERROR,
+						}
+					}
 				)
+
 				if #diag > 0 then
 					vim.cmd('EslintFixAll')
 					return
@@ -52,7 +59,7 @@ return {
 			end
 
 			return {
-				lsp_fallback = true,
+				lsp_fallback = false,
 				async = false,
 				timeout_ms = 1000,
 			}, on_format
