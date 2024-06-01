@@ -22,7 +22,7 @@ return {
 		config = function()
 			local telescope = require('telescope')
 			local actions = require('telescope.actions')
-			local trouble = require("trouble.providers.telescope")
+			local trouble = require("trouble.sources.telescope")
 			local z_utils = require("telescope._extensions.zoxide.utils")
 
 			telescope.setup {
@@ -30,12 +30,12 @@ return {
 					mappings = {
 						i = {
 							["<esc>"] = actions.close,
-							["<C-t>"] = trouble.open_with_trouble,
+							["<C-t>"] = trouble.open,
 							['<C-u>'] = false,
 							['<C-d>'] = false,
 						},
 
-						n = { ["<C-t>"] = trouble.open_with_trouble },
+						n = { ["<C-t>"] = trouble.open },
 					},
 					previewer = false,
 					-- hidden = true,
@@ -201,18 +201,18 @@ return {
 						},
 					},
 					conventional_commits = {
-            theme = "ivy", -- custom theme
-            action = function(entry)
-                -- entry = {
-                --     display = "feat       A new feature",
-                --     index = 7,
-                --     ordinal = "feat",
-                --     value = feat"
-                -- }
-                vim.print(entry)
-            end,
-            include_body_and_footer = true, -- Add prompts for commit body and footer
-        },
+						theme = "ivy", -- custom theme
+						action = function(entry)
+							-- entry = {
+							--     display = "feat       A new feature",
+							--     index = 7,
+							--     ordinal = "feat",
+							--     value = feat"
+							-- }
+							vim.print(entry)
+						end,
+						include_body_and_footer = true, -- Add prompts for commit body and footer
+					},
 					-- file_browser = {
 					--   -- theme = "",
 					--   previewer = true,

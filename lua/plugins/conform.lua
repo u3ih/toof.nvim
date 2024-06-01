@@ -59,7 +59,7 @@ return {
 			end
 
 			return {
-				lsp_fallback = false,
+				lsp_fallback = true,
 				async = false,
 				timeout_ms = 1000,
 			}, on_format

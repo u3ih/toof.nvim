@@ -223,7 +223,7 @@ return {
 					'cssls',
 					'vimls',
 					'tailwindcss',
-					-- 'rust-analyzer',
+					-- 'rust_analyzer',
 				},
 				handlers = {
 					lsp_zero.default_setup,
@@ -328,13 +328,13 @@ return {
 				virtual_text     = true,
 				signs            = {
 					text = {
-            [vim.diagnostic.severity.ERROR] = '🤬',
-            [vim.diagnostic.severity.WARN] = '😤',
+						[vim.diagnostic.severity.ERROR] = '🤬',
+						[vim.diagnostic.severity.WARN] = '😤',
 						[vim.diagnostic.severity.INFO] = '🤔',
-            [vim.diagnostic.severity.HINT] = '🤯'
+						[vim.diagnostic.severity.HINT] = '🤯'
 					},
 					numhl = {
-            [vim.diagnostic.severity.ERROR] = 'ErrorMsg',
+						[vim.diagnostic.severity.ERROR] = 'ErrorMsg',
 						[vim.diagnostic.severity.WARN] = 'WarningMsg',
 					},
 				},
