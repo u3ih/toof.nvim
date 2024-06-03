@@ -13,7 +13,8 @@ return {
 			'telescope-dap.nvim',
 			'kkharji/sqlite.lua',
 			'nvim-telescope/telescope-frecency.nvim',
-			"olacin/telescope-cc.nvim"
+			"olacin/telescope-cc.nvim",
+			"nvim-telescope/telescope-symbols.nvim",
 			-- {
 			--   "nvim-telescope/telescope-file-browser.nvim",
 			--   dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
