@@ -40,7 +40,6 @@ return {
 					{
 						namespace = eslint_diag_ns,
 						severity = {
-							vim.diagnostic.severity.WARN,
 							vim.diagnostic.severity.ERROR,
 						}
 					}

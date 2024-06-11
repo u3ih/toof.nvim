@@ -11,7 +11,7 @@ return {
 		"MunifTanjim/nui.nvim",
 		-- "3rd/image.nvim"
 	},
-	event = "VeryLazy",
+	-- event = "VeryLazy",
 	config = function()
 		require("neo-tree").setup({
 			close_if_last_window = true,
@@ -20,6 +20,12 @@ return {
 			enable_modified_markers = true,
 			enable_diagnostics = false,
 			sort_case_insensitive = true,
+			sources = {
+				"filesystem",
+				"buffers",
+				"git_status",
+				"document_symbols"
+			},
 			default_component_configs = {
 				indent = {
 					with_markers = false,

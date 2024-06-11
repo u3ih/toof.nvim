@@ -15,6 +15,14 @@ return {
 			'nvim-telescope/telescope-frecency.nvim',
 			"olacin/telescope-cc.nvim",
 			"nvim-telescope/telescope-symbols.nvim",
+			{
+				"stevearc/aerial.nvim",
+				config = function()
+					require("aerial").setup({
+						-- optionally use on_attach to set keymaps when aerial has attached to a buffer
+					})
+				end
+			}
 			-- {
 			--   "nvim-telescope/telescope-file-browser.nvim",
 			--   dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
@@ -214,6 +222,14 @@ return {
 						end,
 						include_body_and_footer = true, -- Add prompts for commit body and footer
 					},
+					aerial = {
+						-- Display symbols as <root>.<parent>.<symbol>
+						show_nesting = {
+							["_"] = false, -- This key will be the default
+							json = true, -- You can set the option for specific filetypes
+							yaml = true,
+						},
+					},
 					-- file_browser = {
 					--   -- theme = "",
 					--   previewer = true,
@@ -237,6 +253,8 @@ return {
 			telescope.load_extension("zoxide")
 			telescope.load_extension("frecency")
 			telescope.load_extension("conventional_commits")
+			telescope.load_extension("aerial")
+
 			-- telescope.load_extension("file_browser")
 		end
 	},

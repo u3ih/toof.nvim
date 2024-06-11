@@ -1,7 +1,8 @@
 return {
 	{
 		'folke/todo-comments.nvim',
-		event = "VeryLazy",
+		-- event = "VeryLazy",
+		lazy = true,
 		dependencies = { 'nvim-lua/plenary.nvim' },
 		opts = {
 			-- your configuration comes here
@@ -10,10 +11,11 @@ return {
 		},
 	},
 	-- "gc" to comment visual regions/lines
-	{ 
-		'numToStr/Comment.nvim', 
+	{
+		'numToStr/Comment.nvim',
 		opts = {},
-		event = "VeryLazy",
+		-- event = "VeryLazy",
+		lazy = true,
 		dependencies = {
 			"JoosepAlviste/nvim-ts-context-commentstring"
 		},
@@ -22,7 +24,7 @@ return {
 				pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
 			})
 			require('ts_context_commentstring').setup {
-			  enable_autocmd = false,
+				enable_autocmd = false,
 			}
 		end
 	},

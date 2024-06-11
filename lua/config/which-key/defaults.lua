@@ -138,7 +138,7 @@ return {
 		z = { "<cmd>Telescope zoxide list<cr>", "Zoxide" },
 		e = { "<cmd>Telescope frecency<cr>", "Frecency" },
 		b = { "<cmd>Telescope buffers<cr>", "Buffers" },
-		p = { "<cmd>AerialToggle!<cr>", "Areal Toggle" },
+		p = { "<cmd>Telescope aerial<cr>", "Areal Toggle" },
 		r = { [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]] },
 		d = {
 			name = "+DAP",
@@ -167,6 +167,7 @@ return {
 		l = { "<cmd>lua require'dap'.run_last()<cr>", "Last" },
 		u = { "<cmd>lua require'dapui'.toggle()<cr>", "UI" },
 		x = { "<cmd>lua require'dap'.terminate()<cr>", "Exit" },
+		d = { "<cmd>lua require'dap'.disconnect()<cr>", "Detach" },
 	},
 	n = {
 		name = "+NeoTree",
@@ -181,6 +182,10 @@ return {
 		b = {
 			"<Cmd>Neotree buffers<CR>",
 			"Neotree buffers"
+		},
+		s = {
+			"<Cmd>Neotree document_symbols<CR>",
+			"Neotree document symbols"
 		},
 	},
 	f = {
