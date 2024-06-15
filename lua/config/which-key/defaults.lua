@@ -43,9 +43,10 @@ return {
 	},
 	r = {
 		name = "Replace",
+		t = { "<cmd>lua require('spectre').toggle()<cr>", "Toggle" },
 		r = { "<cmd>lua require('spectre').open()<cr>", "Replace" },
 		w = { "<cmd>lua require('spectre').open_visual({select_word=true})<cr>", "Replace Word" },
-		f = { "<cmd>lua require('spectre').open_file_search()<cr>", "Replace Buffer" },
+		f = { "<cmd>lua require('spectre').open_file_search({select_word=true})<cr>", "Replace In Current Buffer" },
 	},
 	b = {
 		name = "Buffers",
@@ -102,8 +103,12 @@ return {
 		},
 		o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
 		d = {
-			"<cmd>Gitsigns diffthis HEAD<cr>",
+			"<cmd>DiffviewFileHistory %<cr>",
 			"Git Diff",
+		},
+		x = {
+			"<cmd>DiffviewClose<cr>",
+			"Git Diff Close",
 		},
 	},
 	l = {

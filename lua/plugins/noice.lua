@@ -42,12 +42,6 @@ return {
 			},
 		})
 	end,
-	setup = function()
-		vim.g.noice = {
-			background_colour = "#000000",
-			position = "bottom_right",
-		}
-	end,
 	opts = {
 		-- add any options here
 		background_colour = "#000000",

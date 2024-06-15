@@ -1,5 +1,5 @@
 return {
 	"tris203/precognition.nvim",
-	config = {},
+	opts = {},
 	enabled = false
 }

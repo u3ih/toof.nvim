@@ -2,7 +2,6 @@ return {
 	{
 		'VonHeikemen/lsp-zero.nvim',
 		branch = 'v3.x',
-		lazy = false,
 		config = false,
 		init = function()
 			-- Disable automatic setup, we are doing it manually
@@ -12,7 +11,6 @@ return {
 	},
 	{
 		'williamboman/mason.nvim',
-		lazy = false,
 		config = true,
 	},
 
