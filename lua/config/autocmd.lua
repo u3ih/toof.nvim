@@ -127,20 +127,6 @@ api.nvim_create_autocmd("FileType", {
 -- resize neovim split when terminal is resized
 api.nvim_command('autocmd VimResized * wincmd =')
 
--- api.nvim_create_autocmd("ColorScheme", {
---   pattern = "kanagawa",
--- callback = function()
---   if vim.o.background == "light" then
---     vim.fn.system("kitty +kitten themes Kanagawa_light")
---   elseif vim.o.background == "dark" then
---     vim.fn.system("kitty +kitten themes Kanagawa_dragon")
---   else
---     vim.fn.system("kitty +kitten themes Kanagawa")
---   end
--- end,
--- })
-
-
 --fix terraform and hcl comment string
 api.nvim_create_autocmd("FileType", {
   group = api.nvim_create_augroup("FixTerraformCommentString", { clear = true }),
@@ -149,18 +135,6 @@ api.nvim_create_autocmd("FileType", {
   end,
   pattern = { "terraform", "hcl" },
 })
-
--- api.nvim_create_autocmd({ "OptionSet" }, {
---   pattern = { "background" },
---   callback = function(ev)
---     if vim.o.background == 'dark' then
---       vim.cmd("colorscheme gruvbox-material")
---     else
---       vim.cmd("colorscheme gruvbox-material")
---     end
---     vim.cmd("mode")
---   end
--- })
 
 -- avoid untitled file when exit
 api.nvim_create_autocmd('ExitPre', {

@@ -109,7 +109,7 @@ M.toggle_inlay_hints = function()
   -- h = { "<cmd>lua vim.lsp.inlay_hint(0, true)<cr>", "Enable Inlay Hints" },
   -- H = { "<cmd>lua vim.lsp.inlay_hint(0, false)<cr>", "Disable Inlay Hints" },
 
-  vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled())
+  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({}))
   -- if vim.b.inlay_hints then
   --   vim.lsp.inlay_hint(0, false)
   --   vim.b.inlay_hints = false

@@ -6,6 +6,19 @@ return {
 		event = { "BufReadPost", "BufNewFile" },
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter-textobjects",
+			{
+				"windwp/nvim-ts-autotag",
+				lazy = true,
+				opts = {
+					autotag = {
+						enable = true,
+						nable_rename = true,
+						enable_close = true,
+						enable_close_on_slash = true,
+						filetypes = { 'html', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact' },
+					}
+				}
+			}
 		},
 		opts = function(_, opts)
 			if type(opts.ensure_installed) == "table" then
@@ -22,15 +35,15 @@ return {
 				auto_install = true,
 				ensure_installed = {
 					-- "bash",
-					"c",
+					-- "c",
 					"html",
 					"javascript",
 					"json",
 					"lua",
-					"luadoc",
-					"luap",
-					"markdown",
-					"markdown_inline",
+					-- "luadoc",
+					-- "luap",
+					-- "markdown",
+					-- "markdown_inline",
 					"query",
 					"regex",
 					"tsx",
@@ -38,7 +51,7 @@ return {
 					"vim",
 					"vimdoc",
 					"yaml",
-					"rust",
+					-- "rust",
 				},
 				incremental_selection = {
 					enable = true,
@@ -57,19 +70,15 @@ return {
 						keymaps = {
 							-- You can use the capture groups defined in textobjects.scm
 							["af"] = { query = "@function.outer", desc = "around a function" },
-							["if"] = { query = "@function.inner", desc =
-							"inner part of a function" },
+							["if"] = { query = "@function.inner", desc = "inner part of a function" },
 							["ac"] = { query = "@class.outer", desc = "around a class" },
 							["ic"] = { query = "@class.inner", desc = "inner part of a class" },
-							["ai"] = { query = "@conditional.outer", desc =
-							"around an if statement" },
-							["ii"] = { query = "@conditional.inner", desc =
-							"inner part of an if statement" },
+							["ai"] = { query = "@conditional.outer", desc = "around an if statement" },
+							["ii"] = { query = "@conditional.inner", desc = "inner part of an if statement" },
 							["al"] = { query = "@loop.outer", desc = "around a loop" },
 							["il"] = { query = "@loop.inner", desc = "inner part of a loop" },
 							["ap"] = { query = "@parameter.outer", desc = "around parameter" },
-							["ip"] = { query = "@parameter.inner", desc =
-							"inside a parameter" },
+							["ip"] = { query = "@parameter.inner", desc = "inside a parameter" },
 						},
 						selection_modes = {
 							["@parameter.outer"] = "v", -- charwise
