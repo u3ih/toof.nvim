@@ -24,7 +24,6 @@ return {
 	a = "Swap next param",
 	A = "Swap previous param",
 	U = { ":UndotreeToggle<CR>", "Toggle UndoTree" },
-	o = { ":Telescope buffers<CR>", "Open Buffer" },
 	x = { ":NoiceDismiss<CR>", "Dismiss Notice" },
 	u = {
 		name = "UI",
@@ -169,25 +168,44 @@ return {
 		x = { "<cmd>lua require'dap'.terminate()<cr>", "Exit" },
 		d = { "<cmd>lua require'dap'.disconnect()<cr>", "Detach" },
 	},
-	n = {
-		name = "+NeoTree",
+	o = {
+		name = "+Oil explorer",
+		o = {
+			"<Cmd>Oil<CR>",
+			"Oil Open"
+		},
 		t = {
-			"<Cmd>Neotree toggle<CR>",
-			"Neotree toggle"
-		},
-		r = {
-			"<Cmd>Neotree reveal<CR>",
-			"Neotree reveal"
-		},
-		b = {
-			"<Cmd>Neotree buffers<CR>",
-			"Neotree buffers"
+			":lua require('oil').toggle_float()<cr>",
+			"Oil toggle"
 		},
 		s = {
-			"<Cmd>Neotree document_symbols<CR>",
-			"Neotree document symbols"
+			":lua require('oil').save({confirm = false})<cr>",
+			"Oil save"
 		},
+		x = {
+			":lua require('oil').discard_all_changes()<cr>",
+			"Oil discard all change"
+		}
 	},
+	-- n = {
+	-- 	name = "+NeoTree",
+	-- 	t = {
+	-- 		"<Cmd>Neotree toggle<CR>",
+	-- 		"Neotree toggle"
+	-- 	},
+	-- 	r = {
+	-- 		"<Cmd>Neotree reveal<CR>",
+	-- 		"Neotree reveal"
+	-- 	},
+	-- 	b = {
+	-- 		"<Cmd>Neotree buffers<CR>",
+	-- 		"Neotree buffers"
+	-- 	},
+	-- 	s = {
+	-- 		"<Cmd>Neotree document_symbols<CR>",
+	-- 		"Neotree document symbols"
+	-- 	},
+	-- },
 	f = {
 		name = "+Format",
 		e = { "<cmd>EslintFixAll<cr>", "Fix Eslint" },

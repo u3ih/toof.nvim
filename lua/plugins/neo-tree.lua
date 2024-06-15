@@ -5,13 +5,14 @@
 -- https://github.com/nvim-neo-tree/neo-tree.nvim/wiki/Recipes
 return {
 	"nvim-neo-tree/neo-tree.nvim",
+	enabled = false,
+	event = "VeryLazy",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"nvim-tree/nvim-web-devicons",
 		"MunifTanjim/nui.nvim",
 		-- "3rd/image.nvim"
 	},
-	-- event = "VeryLazy",
 	config = function()
 		require("neo-tree").setup({
 			close_if_last_window = true,
