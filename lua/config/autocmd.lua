@@ -137,12 +137,12 @@ api.nvim_create_autocmd("FileType", {
 })
 
 -- avoid untitled file when exit
-api.nvim_create_autocmd('ExitPre', {
-  callback = function()
-    if eval('@%') == '' then
-      vim.cmd("q!")
-    else
-      vim.cmd("wq!")
-    end
-  end
-})
+-- api.nvim_create_autocmd('ExitPre', {
+--   callback = function()
+--     if eval('@%') == '' then
+--       vim.cmd("q!")
+--     else
+--       vim.cmd("wq!")
+--     end
+--   end
+-- })

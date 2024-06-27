@@ -1,4 +1,22 @@
-return {
+local M = {
+  diagnostics = {
+    BoldError = "",
+    BoldWarning = "",
+    BoldInformation = "",
+    BoldQuestion = "",
+    Question = "",
+    BoldHint = "",
+    Debug = "",
+    Trace = "✎",
+    -- Error = "",
+    -- Warning = "",
+    -- Information = "",
+    -- Hint = "",
+    [vim.diagnostic.severity.ERROR] = '🤬',
+    [vim.diagnostic.severity.WARN] = '😤',
+    [vim.diagnostic.severity.INFO] = '🤔',
+    [vim.diagnostic.severity.HINT] = '🤯'
+  },
   kind = {
     Array = "",
     Boolean = "",
@@ -128,20 +146,6 @@ return {
     TriangleShortArrowRight = "",
     TriangleShortArrowUp = "",
   },
-  diagnostics = {
-    BoldError = "",
-    Error = "",
-    BoldWarning = "",
-    Warning = "",
-    BoldInformation = "",
-    Information = "",
-    BoldQuestion = "",
-    Question = "",
-    BoldHint = "",
-    Hint = "",
-    Debug = "",
-    Trace = "✎",
-  },
   misc = {
     Robot = "ﮧ",
     Squirrel = "",
@@ -151,4 +155,13 @@ return {
     Package = "",
     CircuitBoard = "",
   },
+  dap = {
+    Stopped = { '󰁕 ', 'DiagnosticSignWarn', 'DapStoppedLine' },
+    Breakpoint = { ' ', 'DiagnosticSignInfo' },
+    BreakpointCondition = { ' ', 'DiagnosticSignHint' },
+    BreakpointRejected = { ' ', 'DiagnosticSignError' },
+    LogPoint = '.>',
+  },
 }
+
+return M

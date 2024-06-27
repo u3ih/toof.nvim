@@ -1,5 +1,5 @@
 return {
-	"react-extract.nvim",
+	"napmn/react-extract.nvim",
 	-- keymaps = {
 	--
 	-- }

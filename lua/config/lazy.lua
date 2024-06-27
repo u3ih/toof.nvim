@@ -25,6 +25,7 @@ require("lazy").setup("plugins", {
     notify = false,
   },
   performance = {
+    cache = { enabled = true },
     rtp = {
       disabled_plugins = {
         "gzip",
@@ -33,6 +34,13 @@ require("lazy").setup("plugins", {
         "tutor",
         "zipPlugin",
       },
+    },
+  },
+  ui = {
+    border = 'rounded',
+    size = {
+      width = 0.7,
+      height = 0.7,
     },
   },
 })

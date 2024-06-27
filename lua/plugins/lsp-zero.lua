@@ -23,16 +23,16 @@ return {
 			{ 'onsails/lspkind.nvim' },
 		},
 		config = function()
-			require('lsp-zero.cmp').extend()
+			require('lsp-zero.cmp').extend({})
 
 			local cmp         = require('cmp')
 			local lspkind     = require('lspkind')
-			local icons       = require('config.icons')
+			local icons       = require('utils.icons')
 			local cmp_action  = require('lsp-zero.cmp').action()
 			local cmp_mapping = cmp.mapping
 			local cmp_types   = require('cmp.types.cmp')
 			local luasnip     = require('luasnip')
-			local utils       = require('config.utils')
+			local utils       = require('utils.lsp-utils')
 			cmp.setup({
 				matching = {
 					disallow_partial_fuzzy_matching = false
@@ -321,16 +321,13 @@ return {
 				suggest_lsp_servers = true,
 			})
 
+			local icons = require('utils.icons')
+
 			vim.diagnostic.config({
 				underline        = true,
 				virtual_text     = true,
 				signs            = {
-					text = {
-						[vim.diagnostic.severity.ERROR] = '🤬',
-						[vim.diagnostic.severity.WARN] = '😤',
-						[vim.diagnostic.severity.INFO] = '🤔',
-						[vim.diagnostic.severity.HINT] = '🤯'
-					},
+					text = icons.diagnostics,
 					numhl = {
 						[vim.diagnostic.severity.ERROR] = 'ErrorMsg',
 						[vim.diagnostic.severity.WARN] = 'WarningMsg',

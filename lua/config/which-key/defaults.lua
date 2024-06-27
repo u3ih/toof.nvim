@@ -27,9 +27,9 @@ return {
 	x = { ":NoiceDismiss<CR>", "Dismiss Notice" },
 	u = {
 		name = "UI",
-		c = { "<cmd>lua require('config.utils').toggle_set_color_column()<CR>", "Toggle Color Line" },
-		l = { "<cmd>lua require('config.utils').toggle_cursor_line()<CR>", "Toggle Cursor Line" },
-		b = { "<cmd>lua require('config.utils').change_background()<CR>", "Toggle Background" },
+		c = { "<cmd>lua require('utils.lsp-utils').toggle_set_color_column()<CR>", "Toggle Color Line" },
+		l = { "<cmd>lua require('utils.lsp-utils').toggle_cursor_line()<CR>", "Toggle Cursor Line" },
+		b = { "<cmd>lua require('utils.lsp-utils').change_background()<CR>", "Toggle Background" },
 	},
 	i = {
 		name = "Sessions",
@@ -117,7 +117,7 @@ return {
 		L = { "<cmd>Trouble diagnostics toggle<cr>", "Workspace Diagnostics (Trouble)" },
 		w = { "<cmd>Telescope diagnostics<cr>", "Diagnostics" },
 		r = { [[ <Esc><Cmd>lua require('telescope').extensions.refactoring.refactors()<CR>]], "Refactor" },
-		h = { "<cmd>lua require('config.utils').toggle_inlay_hints()<CR>", "Toggle Inlay Hints" },
+		h = { "<cmd>lua require('utils.lsp-utils').toggle_inlay_hints()<CR>", "Toggle Inlay Hints" },
 
 		p = { "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>", "previous diagnostic" },
 		n = { "<cmd>lua vim.lsp.diagnostic.goto_next()<cr>", "next diagnostic" },
