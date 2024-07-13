@@ -19,203 +19,122 @@ end
 
 return {
 	mode = { "n", "v" },
-	p = { "<cmd>Telescope treesitter<CR>", "List Symbols" },
-	v = "Go to definition in a split",
-	a = "Swap next param",
-	A = "Swap previous param",
-	U = { ":UndotreeToggle<CR>", "Toggle UndoTree" },
-	x = { ":NoiceDismiss<CR>", "Dismiss Notice" },
-	u = {
-		name = "UI",
-		c = { "<cmd>lua require('utils.lsp-utils').toggle_set_color_column()<CR>", "Toggle Color Line" },
-		l = { "<cmd>lua require('utils.lsp-utils').toggle_cursor_line()<CR>", "Toggle Cursor Line" },
-		b = { "<cmd>lua require('utils.lsp-utils').change_background()<CR>", "Toggle Background" },
-	},
-	i = {
-		name = "Sessions",
-		s    = { "<cmd>lua require('persistence').load()<cr>", "Load Session" },
-		l    = { "<cmd>lua require('persistence').load({ last = true })<cr>", "Load Last Session" },
-		d    = { "<cmd>lua require('persistence').stop()<cr>", "Stop Persistence" },
-	},
-	m = {
-		name = "Marks",
-		m = { "<cmd>Telescope marks<cr>", "Marks" },
-	},
-	r = {
-		name = "Replace",
-		t = { "<cmd>lua require('spectre').toggle()<cr>", "Toggle" },
-		r = { "<cmd>lua require('spectre').open()<cr>", "Replace" },
-		w = { "<cmd>lua require('spectre').open_visual({select_word=true})<cr>", "Replace Word" },
-		f = { "<cmd>lua require('spectre').open_file_search({select_word=true})<cr>", "Replace In Current Buffer" },
-	},
-	b = {
-		name = "Buffers",
-		-- j = { "<cmd>BufferLinePick<cr>", "Jump" },
-		f = { "<cmd>Telescope buffers previewer=false<cr>", "Find" },
-		-- b = { "<cmd>BufferLineCyclePrev<cr>", "Previous" },
-		-- n = { "<cmd>BufferLineCycleNext<cr>", "Next" },
-		W = { "<cmd>noautocmd w<cr>", "Save without formatting (noautocmd)" },
-		e = {
-			"<cmd>BufferLinePickClose<cr>",
-			"Pick which buffer to close",
-		},
-		l = { "<cmd>BufferLineCloseLeft<cr>", "Close all to the left" },
-		r = {
-			"<cmd>BufferLineCloseRight<cr>",
-			"Close all to the right",
-		},
-		o = {
-			"<Cmd>BufferLineCloseOthers<CR>",
-			"Delete other buffers"
-		},
-		d = {
-			":bd<CR>",
-			"Close Buffer"
-		},
-		-- D = {
-		--   "<cmd>BufferLineSortByDirectory<cr>",
-		--   "Sort by directory",
-		-- },
-		-- L = {
-		--   "<cmd>BufferLineSortByExtension<cr>",
-		--   "Sort by language",
-		-- },
-		p = { "<cmd>BufferLineTogglePin<CR>", "Toggle pin" },
-		P = { "<cmd>BufferLineGroupClose ungrouped<CR>", "Delete non-pinned buffers" },
-	},
-	g = {
-		name = "+Git",
-		t = { "<cmd>lua require 'gitsigns'.toggle_current_line_blame()<cr>", "Toggle Line blame" },
-		k = { "<cmd>lua require 'gitsigns'.prev_hunk({navigation_message = false})<cr>", "Prev Hunk" },
-		l = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame" },
-		p = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },
-		r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
-		R = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer" },
-		j = { "<cmd>lua require 'gitsigns'.next_hunk({navigation_message = false})<cr>", "Next Hunk" },
-		s = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk" },
-		u = {
-			"<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
-			"Undo Stage Hunk",
-		},
-		g = {
-			"<cmd>:LazyGit<cr>",
-			"Lazygit"
-		},
-		o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
-		d = {
-			"<cmd>DiffviewFileHistory %<cr>",
-			"Git Diff",
-		},
-		x = {
-			"<cmd>DiffviewClose<cr>",
-			"Git Diff Close",
-		},
-	},
-	l = {
-		name = "+LSP",
-		l = { "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", "Document Diagnostics (Trouble)" },
-		L = { "<cmd>Trouble diagnostics toggle<cr>", "Workspace Diagnostics (Trouble)" },
-		w = { "<cmd>Telescope diagnostics<cr>", "Diagnostics" },
-		r = { [[ <Esc><Cmd>lua require('telescope').extensions.refactoring.refactors()<CR>]], "Refactor" },
-		h = { "<cmd>lua require('utils.lsp-utils').toggle_inlay_hints()<CR>", "Toggle Inlay Hints" },
+	{ "<leader>a",   desc = "Swap next param" },
+	{ "<leader>A",   desc = "Swap previous param" },
+	{ "<leader>p",   "<cmd>Telescope treesitter<CR>",                                              desc = "List Symbols" },
+	{ "<leader>x",   ":NoiceDismiss<CR>",                                                          desc = "Dismiss Notice" },
 
-		p = { "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>", "previous diagnostic" },
-		n = { "<cmd>lua vim.lsp.diagnostic.goto_next()<cr>", "next diagnostic" },
-		e = { "<cmd>Telescope quickfix<cr>", "Telescope Quickfix" },
-	},
-	s = {
-		name = "+Search",
-		f = { "<cmd>Telescope find_files hidden=true<cr>", "Find File (CWD)" },
-		h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
-		H = { "<cmd>Telescope highlights<cr>", "Find highlight groups" },
-		M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
-		o = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
-		R = { "<cmd>Telescope registers<cr>", "Registers" },
-		g = { '<cmd>lua searchWithCurrentSelectedText()<cr>', "Live grep fixed string" },
-		k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
-		C = { "<cmd>Telescope commands<cr>", "Commands" },
-		l = { "<cmd>Telescope resume<cr>", "Resume last search" },
-		c = { "<cmd>Telescope git_commits<cr>", "Git commits" },
-		B = { "<cmd>Telescope git_branches<cr>", "Git branches" },
-		s = { "<cmd>Telescope git_status<cr>", "Git status" },
-		S = { "<cmd>Telescope git_stash<cr>", "Git stash" },
-		z = { "<cmd>Telescope zoxide list<cr>", "Zoxide" },
-		e = { "<cmd>Telescope frecency<cr>", "Frecency" },
-		b = { "<cmd>Telescope buffers<cr>", "Buffers" },
-		p = { "<cmd>Telescope aerial<cr>", "Areal Toggle" },
-		r = { [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]] },
-		d = {
-			name = "+DAP",
-			c = { "<cmd>Telescope dap commands<cr>", "Dap Commands" },
-			b = { "<cmd>Telescope dap list_breakpoints<cr>", "Dap Breakpoints" },
-			g = { "<cmd>Telescope dap configurations<cr>", "Dap Configurations" },
-			v = { "<cmd>Telescope dap variables<cr>", "Dap Variables" },
-			f = { "<cmd>Telescope dap frames<cr>", "Dap Frames" },
-		}
-	},
-	T = {
-		name = "+Todo",
-		t = { "<cmd>TodoTrouble<cr>", "Todo (Trouble)" },
-		T = { "<cmd>TodoTrouble keywords=TODO,FIX,FIXME<cr>", "Todo/Fix/Fixme (Trouble)" },
-		n = { "<cmd>lua require ('todo-comments').jump_next()<cr>", "Next todo comment" },
-		p = { "<cmd>lua require ('todo-comments').jump_prev()<cr>", "Previous todo comment" },
-	},
-	d = {
-		name = "Debug",
-		b = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Breakpoint" },
-		c = { "<cmd>lua require'dap'.continue()<cr>", "Continue" },
-		i = { "<cmd>lua require'dap'.step_into()<cr>", "Into" },
-		o = { "<cmd>lua require'dap'.step_over()<cr>", "Over" },
-		O = { "<cmd>lua require'dap'.step_out()<cr>", "Out" },
-		r = { "<cmd>lua require'dap'.repl.toggle()<cr>", "Repl" },
-		l = { "<cmd>lua require'dap'.run_last()<cr>", "Last" },
-		u = { "<cmd>lua require'dapui'.toggle()<cr>", "UI" },
-		x = { "<cmd>lua require'dap'.terminate()<cr>", "Exit" },
-		d = { "<cmd>lua require'dap'.disconnect()<cr>", "Detach" },
-	},
-	o = {
-		name = "+Oil explorer",
-		o = {
-			"<Cmd>Oil<CR>",
-			"Oil Open"
-		},
-		t = {
-			":lua require('oil').toggle_float()<cr>",
-			"Oil toggle"
-		},
-		s = {
-			":lua require('oil').save({confirm = false})<cr>",
-			"Oil save"
-		},
-		x = {
-			":lua require('oil').discard_all_changes()<cr>",
-			"Oil discard all change"
-		}
-	},
-	-- n = {
-	-- 	name = "+NeoTree",
-	-- 	t = {
-	-- 		"<Cmd>Neotree toggle<CR>",
-	-- 		"Neotree toggle"
-	-- 	},
-	-- 	r = {
-	-- 		"<Cmd>Neotree reveal<CR>",
-	-- 		"Neotree reveal"
-	-- 	},
-	-- 	b = {
-	-- 		"<Cmd>Neotree buffers<CR>",
-	-- 		"Neotree buffers"
-	-- 	},
-	-- 	s = {
-	-- 		"<Cmd>Neotree document_symbols<CR>",
-	-- 		"Neotree document symbols"
-	-- 	},
-	-- },
-	f = {
-		name = "+Format",
-		e = { "<cmd>EslintFixAll<cr>", "Fix Eslint" },
-	},
-	t = {
-		name = "+Tests"
-	},
+	{ "<leader>T",   group = "Todo" },
+	{ "<leader>TT",  "<cmd>TodoTrouble keywords=TODO,FIX,FIXME<cr>",                               desc = "Todo/Fix/Fixme (Trouble)" },
+	{ "<leader>Tn",  "<cmd>lua require('todo-comments').jump_next()<cr>",                          desc = "Next todo comment" },
+	{ "<leader>Tp",  "<cmd>lua require('todo-comments').jump_prev()<cr>",                          desc = "Previous todo comment" },
+	{ "<leader>Tt",  "<cmd>TodoTrouble<cr>",                                                       desc = "Todo (Trouble)" },
+
+	{ "<leader>u",   group = "UI" },
+	{ "<leader>U",   ":UndotreeToggle<CR>",                                                        desc = "Toggle UndoTree" },
+	{ "<leader>ub",  "<cmd>lua require('utils.lsp-utils').change_background()<CR>",                desc = "Toggle Background" },
+	{ "<leader>uc",  "<cmd>lua require('utils.lsp-utils').toggle_set_color_column()<CR>",          desc = "Toggle Color Line" },
+	{ "<leader>v",   desc = "Go to definition in a split" },
+
+	{ "<leader>b",   group = "Buffers" },
+
+	{ "<leader>bP",  "<cmd>BufferLineGroupClose ungrouped<CR>",                                    desc = "Delete non-pinned buffers" },
+	{ "<leader>bW",  "<cmd>noautocmd w<cr>",                                                       desc = "Save without formatting (noautocmd)" },
+	{ "<leader>bd",  ":bd<CR>",                                                                    desc = "Close Buffer" },
+	{ "<leader>be",  "<cmd>BufferLinePickClose<cr>",                                               desc = "Pick which buffer to close" },
+	{ "<leader>bf",  "<cmd>Telescope buffers previewer=false<cr>",                                 desc = "Find" },
+	{ "<leader>bl",  "<cmd>BufferLineCloseLeft<cr>",                                               desc = "Close all to the left" },
+	{ "<leader>bo",  "<Cmd>BufferLineCloseOthers<CR>",                                             desc = "Delete other buffers" },
+	{ "<leader>bp",  "<cmd>BufferLineTogglePin<CR>",                                               desc = "Toggle pin" },
+	{ "<leader>br",  "<cmd>BufferLineCloseRight<cr>",                                              desc = "Close all to the right" },
+	{ "<leader>d",   group = "Debug" },
+
+	{ "<leader>dO",  "<cmd>lua require'dap'.step_out()<cr>",                                       desc = "Out" },
+	{ "<leader>db",  "<cmd>lua require'dap'.toggle_breakpoint()<cr>",                              desc = "Breakpoint" },
+	{ "<leader>dc",  "<cmd>lua require'dap'.continue()<cr>",                                       desc = "Continue" },
+	{ "<leader>dd",  "<cmd>lua require'dap'.disconnect()<cr>",                                     desc = "Detach" },
+	{ "<leader>di",  "<cmd>lua require'dap'.step_into()<cr>",                                      desc = "Into" },
+	{ "<leader>dl",  "<cmd>lua require'dap'.run_last()<cr>",                                       desc = "Last" },
+	{ "<leader>do",  "<cmd>lua require'dap'.step_over()<cr>",                                      desc = "Over" },
+	{ "<leader>dr",  "<cmd>lua require'dap'.repl.toggle()<cr>",                                    desc = "Repl" },
+	{ "<leader>du",  "<cmd>lua require'dapui'.toggle()<cr>",                                       desc = "UI" },
+	{ "<leader>dx",  "<cmd>lua require'dap'.terminate()<cr>",                                      desc = "Exit" },
+
+	{ "<leader>f",   group = "Format" },
+	{ "<leader>fe",  "<cmd>EslintFixAll<cr>",                                                      desc = "Fix Eslint" },
+
+	{ "<leader>g",   group = "Git" },
+	{ "<leader>gR",  "<cmd>lua require 'gitsigns'.reset_buffer()<cr>",                             desc = "Reset Buffer" },
+	{ "<leader>gd",  "<cmd>DiffviewFileHistory %<cr>",                                             desc = "Git Diff" },
+	{ "<leader>gg",  "<cmd>:LazyGit<cr>",                                                          desc = "Lazygit" },
+	{ "<leader>gj",  "<cmd>lua require 'gitsigns'.next_hunk({navigation_message = false})<cr>",    desc = "Next Hunk" },
+	{ "<leader>gk",  "<cmd>lua require 'gitsigns'.prev_hunk({navigation_message = false})<cr>",    desc = "Prev Hunk" },
+	{ "<leader>gl",  "<cmd>lua require 'gitsigns'.blame_line()<cr>",                               desc = "Blame" },
+	{ "<leader>go",  "<cmd>Telescope git_status<cr>",                                              desc = "Open changed file" },
+	{ "<leader>gp",  "<cmd>lua require 'gitsigns'.preview_hunk()<cr>",                             desc = "Preview Hunk" },
+	{ "<leader>gr",  "<cmd>lua require 'gitsigns'.reset_hunk()<cr>",                               desc = "Reset Hunk" },
+	{ "<leader>gs",  "<cmd>lua require 'gitsigns'.stage_hunk()<cr>",                               desc = "Stage Hunk" },
+	{ "<leader>gt",  "<cmd>lua require 'gitsigns'.toggle_current_line_blame()<cr>",                desc = "Toggle Line blame" },
+	{ "<leader>gu",  "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",                          desc = "Undo Stage Hunk" },
+	{ "<leader>gx",  "<cmd>DiffviewClose<cr>",                                                     desc = "Git Diff Close" },
+
+	{ "<leader>i",   group = "Sessions" },
+	{ "<leader>id",  "<cmd>lua require('persistence').stop()<cr>",                                 desc = "Stop Persistence" },
+	{ "<leader>il",  "<cmd>lua require('persistence').load({ last = true })<cr>",                  desc = "Load Last Session" },
+	{ "<leader>is",  "<cmd>lua require('persistence').load()<cr>",                                 desc = "Load Session" },
+
+	{ "<leader>l",   group = "LSP" },
+	{ "<leader>lL",  "<cmd>Trouble diagnostics toggle<cr>",                                        desc = "Workspace Diagnostics (Trouble)" },
+	{ "<leader>le",  "<cmd>Telescope quickfix<cr>",                                                desc = "Telescope Quickfix" },
+	{ "<leader>lh",  "<cmd>lua require('utils.lsp-utils').toggle_inlay_hints()<CR>",               desc = "Toggle Inlay Hints" },
+	{ "<leader>ll",  "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",                           desc = "Document Diagnostics (Trouble)" },
+	{ "<leader>ln",  "<cmd>lua vim.lsp.diagnostic.goto_next()<cr>",                                desc = "next diagnostic" },
+	{ "<leader>lp",  "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>",                                desc = "previous diagnostic" },
+	{ "<leader>lr",  " <Esc><Cmd>lua require('telescope').extensions.refactoring.refactors()<CR>", desc = "Refactor" },
+	{ "<leader>lw",  "<cmd>Telescope diagnostics<cr>",                                             desc = "Diagnostics" },
+
+	{ "<leader>m",   group = "Marks" },
+	{ "<leader>mm",  "<cmd>Telescope marks<cr>",                                                   desc = "Marks" },
+
+	{ "<leader>o",   group = "Oil explorer" },
+	{ "<leader>oo",  "<Cmd>Oil<CR>",                                                               desc = "Oil Open" },
+	{ "<leader>os",  ":lua require('oil').save({confirm = false})<cr>",                            desc = "Oil save" },
+	{ "<leader>ot",  ":lua require('oil').toggle_float()<cr>",                                     desc = "Oil toggle" },
+	{ "<leader>ox",  ":lua require('oil').discard_all_changes()<cr>",                              desc = "Oil discard all change" },
+
+	{ "<leader>r",   group = "Replace" },
+	{ "<leader>rf",  "<cmd>lua require('spectre').open_file_search({select_word=true})<cr>",       desc = "Replace In Current Buffer" },
+	{ "<leader>rr",  "<cmd>lua require('spectre').open()<cr>",                                     desc = "Replace" },
+	{ "<leader>rt",  "<cmd>lua require('spectre').toggle()<cr>",                                   desc = "Toggle" },
+	{ "<leader>rw",  "<cmd>lua require('spectre').open_visual({select_word=true})<cr>",            desc = "Replace Word" },
+
+	{ "<leader>s",   group = "Search" },
+	{ "<leader>sB",  "<cmd>Telescope git_branches<cr>",                                            desc = "Git branches" },
+	{ "<leader>sC",  "<cmd>Telescope commands<cr>",                                                desc = "Commands" },
+	{ "<leader>sH",  "<cmd>Telescope highlights<cr>",                                              desc = "Find highlight groups" },
+	{ "<leader>sM",  "<cmd>Telescope man_pages<cr>",                                               desc = "Man Pages" },
+	{ "<leader>sR",  "<cmd>Telescope registers<cr>",                                               desc = "Registers" },
+	{ "<leader>sS",  "<cmd>Telescope git_stash<cr>",                                               desc = "Git stash" },
+	{ "<leader>sb",  "<cmd>Telescope buffers<cr>",                                                 desc = "Buffers" },
+	{ "<leader>sc",  "<cmd>Telescope git_commits<cr>",                                             desc = "Git commits" },
+
+	{ "<leader>sd",  group = "DAP" },
+	{ "<leader>sdb", "<cmd>Telescope dap list_breakpoints<cr>",                                    desc = "Dap Breakpoints" },
+	{ "<leader>sdc", "<cmd>Telescope dap commands<cr>",                                            desc = "Dap Commands" },
+	{ "<leader>sdf", "<cmd>Telescope dap frames<cr>",                                              desc = "Dap Frames" },
+	{ "<leader>sdg", "<cmd>Telescope dap configurations<cr>",                                      desc = "Dap Configurations" },
+	{ "<leader>sdv", "<cmd>Telescope dap variables<cr>",                                           desc = "Dap Variables" },
+	{ "<leader>se",  "<cmd>Telescope frecency<cr>",                                                desc = "Frecency" },
+	{ "<leader>sf",  "<cmd>Telescope find_files hidden=true<cr>",                                  desc = "Find File (CWD)" },
+	{ "<leader>sg",  "<cmd>lua searchWithCurrentSelectedText()<cr>",                               desc = "Live grep fixed string" },
+	{ "<leader>sh",  "<cmd>Telescope help_tags<cr>",                                               desc = "Find Help" },
+	{ "<leader>sk",  "<cmd>Telescope keymaps<cr>",                                                 desc = "Keymaps" },
+	{ "<leader>sl",  "<cmd>Telescope resume<cr>",                                                  desc = "Resume last search" },
+	{ "<leader>so",  "<cmd>Telescope oldfiles<cr>",                                                desc = "Open Recent File" },
+	{ "<leader>sp",  "<cmd>Telescope aerial<cr>",                                                  desc = "Areal Toggle" },
+	{ "<leader>sr",  desc = ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>" },
+	{ "<leader>ss",  "<cmd>Telescope git_status<cr>",                                              desc = "Git status" },
+	{ "<leader>sz",  "<cmd>Telescope zoxide list<cr>",                                             desc = "Zoxide" },
+
+	{ "<leader>t",   group = "Tests" },
 }
