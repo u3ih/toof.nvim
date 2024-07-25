@@ -4,6 +4,7 @@ return {
 	event = "VimEnter",
 	opts = function()
 		local dashboard = require("alpha.themes.dashboard")
+		local fortune = require("alpha.fortune")
 		local logo = [[
     ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
     ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║
@@ -14,7 +15,8 @@ return {
 
     ]]
 
-		dashboard.section.header.val = vim.split(logo, "\n")
+		dashboard.section.header.val = fortune
+
 		dashboard.section.buttons.val = {
 			dashboard.button("f", " " .. " Find file", ":Telescope find_files <CR>"),
 			dashboard.button("n", " " .. " New file", ":ene <BAR> startinsert <CR>"),

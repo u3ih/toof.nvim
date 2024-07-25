@@ -28,7 +28,7 @@ return {
 			["lua"] = { "lua_ls" },
 			-- ["yaml"] = { "prettier" },
 		},
-		format_on_save = function(bufnr)
+		format_after_save = function(bufnr)
 			-- keep eslint-lsp version is 4.8.0 because in 4.10.0 diagnostic cant show eslint message with nvim version < 0.10
 			local eslint_client = vim.lsp.get_clients({ bufnr = bufnr, name = 'eslint' })[1]
 
@@ -52,15 +52,15 @@ return {
 			end
 
 			local function on_format(err)
-				if err and err:match("timeout$") then
-					slow_format_filetypes[vim.bo[bufnr].filetype] = true
-				end
+				-- if err and err:match("timeout$") then
+				-- 	slow_format_filetypes[vim.bo[bufnr].filetype] = true
+				-- end
 			end
 
 			return {
 				lsp_fallback = true,
-				async = false,
-				timeout_ms = 2000,
+				async = true,
+				timeout_ms = 500,
 			}, on_format
 		end
 	},
