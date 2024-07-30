@@ -60,6 +60,7 @@ return {
 			return {
 				lsp_fallback = true,
 				async = true,
+				bufnr,
 				timeout_ms = 500,
 			}, on_format
 		end
