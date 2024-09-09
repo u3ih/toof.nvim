@@ -214,7 +214,7 @@ return {
 			})
 			require('mason-lspconfig').setup({
 				ensure_installed = {
-					'tsserver',
+					'ts_ls',
 					'eslint@4.8.0',
 					'lua_ls',
 					'jsonls',
@@ -256,7 +256,7 @@ return {
 						}
 					}),
 
-					lspconfig.tsserver.setup({
+					lspconfig.ts_ls.setup({
 						root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json",
 							"jsconfig.json"),
 						filetypes = { 'javascript', 'javascriptreact', 'typescript',
