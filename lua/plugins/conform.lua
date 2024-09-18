@@ -2,6 +2,7 @@ return {
 	"stevearc/conform.nvim",
 	event = { "BufWritePre" },
 	cmd = { "ConformInfo" },
+	log_level = vim.log.levels.DEBUG,
 	keys = {
 		{
 			-- Customize or remove this keymap to your liking
@@ -19,12 +20,12 @@ return {
 			-- ["typescript"] = { "eslint_d" },
 			-- ["typescriptreact"] = { "eslint_d" },
 			-- ["javascriptreact"] = { "eslint_d" },
-			["css"] = { "prettier" },
-			["scss"] = { "prettier" },
-			["less"] = { "prettier" },
-			["html"] = { "prettier" },
-			["json"] = { "prettier" },
-			["jsonc"] = { "prettier" },
+			["css"] = { "prettier", stop_after_first = true },
+			["scss"] = { "prettier", stop_after_first = true },
+			["less"] = { "prettier", stop_after_first = true },
+			["html"] = { "prettier", stop_after_first = true },
+			["json"] = { "prettier", stop_after_first = true },
+			["jsonc"] = { "prettier", stop_after_first = true },
 			["lua"] = { "lua_ls" },
 			-- ["yaml"] = { "prettier" },
 		},

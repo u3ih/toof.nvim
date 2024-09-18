@@ -80,3 +80,7 @@ map('n', '<C-P>', ':lua require("utils.lsp-utils").toggle_go_test()<CR>', opts)
 
 -- quickfix actions
 map("n", "<leader>qf", "<cmd>lua vim.lsp.buf.code_action()<CR>")
+
+-- copy current filepath
+map("n", "<Leader>cf", "<cmd>let @+ = expand(\"%\")<CR><cmd>echo 'File name copied!'<CR>", { desc = "Copy File Name" })
+map("n", "<Leader>cp", "<cmd>let @+ = expand(\"%:p\")<CR><cmd>echo 'File path copied!'<CR>", { desc = "Copy File Path" })

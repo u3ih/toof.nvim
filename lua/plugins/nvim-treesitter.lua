@@ -26,7 +26,8 @@ return {
 			end
 		end,
 		config = function()
-			require("nvim-treesitter.configs").setup {
+			require("nvim-treesitter.configs").setup({
+				modules = {},
 				highlight = {
 					enable = true,
 					additional_vim_regex_highlighting = false,
@@ -53,6 +54,8 @@ return {
 					"yaml",
 					-- "rust",
 				},
+				sync_install = false, -- Add this line
+				ignore_install = {}, -- Add this line
 				incremental_selection = {
 					enable = true,
 					keymaps = {
@@ -96,8 +99,11 @@ return {
 						goto_previous_start = {
 							["[f"] = { query = "@function.outer", desc = "Previous function" },
 							["[c"] = { query = "@class.outer", desc = "Previous class" },
-							["[p"] = { query = "@parameter.inner", desc =
-							"Previous parameter" },
+							["[p"] = {
+								query = "@parameter.inner",
+								desc =
+								"Previous parameter"
+							},
 						},
 						goto_next_start = {
 							["]f"] = { query = "@function.outer", desc = "Next function" },
@@ -115,7 +121,7 @@ return {
 						},
 					},
 				},
-			}
+			})
 		end
 	},
 }
