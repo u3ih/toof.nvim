@@ -215,6 +215,8 @@ return {
 			require('mason-lspconfig').setup({
 				ensure_installed = {
 					'ts_ls',
+					"solidity_ls_nomicfoundation",
+					"biome",
 					'eslint@4.8.0',
 					'lua_ls',
 					'jsonls',
@@ -246,7 +248,6 @@ return {
 					-- 	root_dir = require("lspconfig.util").find_git_ancestor,
 					-- 	single_file_support = true,
 					-- }),
-
 					lspconfig.jsonls.setup({
 						settings = {
 							json = {
@@ -275,6 +276,11 @@ return {
 							format = { enable = true },
 							lint = { enable = true },
 						},
+					}),
+
+					lspconfig.biome.setup({
+						single_file_support = false,
+						root_dir = require("lspconfig.util").find_git_ancestor,
 					}),
 
 					lspconfig.rust_analyzer.setup({

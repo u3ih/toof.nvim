@@ -1,3 +1,30 @@
+local function biome_lsp_or_prettier(bufnr)
+	local has_biome_lsp = vim.lsp.get_clients({
+		bufnr = bufnr,
+		name = "biome",
+	})[1]
+	if has_biome_lsp then
+		return { "biome" }
+	end
+	local has_prettier = vim.fs.find({
+		-- https://prettier.io/docs/en/configuration.html
+		".prettierrc",
+		".prettierrc.json",
+		".prettierrc.yml",
+		".prettierrc.yaml",
+		".prettierrc.json5",
+		".prettierrc.js",
+		".prettierrc.cjs",
+		".prettierrc.toml",
+		"prettier.config.js",
+		"prettier.config.cjs",
+	}, { upward = true })[1]
+	if has_prettier then
+		return { "prettier" }
+	end
+	return { "biome" }
+end
+
 return {
 	"stevearc/conform.nvim",
 	event = { "BufWritePre" },
@@ -16,10 +43,10 @@ return {
 	},
 	opts = {
 		formatters_by_ft = {
-			-- ["javascript"] = { "eslint_d" }, -- eslint_d too slow so i use custom cmd
-			-- ["typescript"] = { "eslint_d" },
-			-- ["typescriptreact"] = { "eslint_d" },
-			-- ["javascriptreact"] = { "eslint_d" },
+			["javascript"] = biome_lsp_or_prettier, -- eslint_d too slow so i use custom cmd
+			["typescript"] = biome_lsp_or_prettier,
+			["typescriptreact"] = biome_lsp_or_prettier,
+			["javascriptreact"] = biome_lsp_or_prettier,
 			["css"] = { "prettier", stop_after_first = true },
 			["scss"] = { "prettier", stop_after_first = true },
 			["less"] = { "prettier", stop_after_first = true },
