@@ -223,7 +223,7 @@ return {
 					'cssls',
 					'vimls',
 					'tailwindcss',
-					-- 'rust_analyzer',
+					'rust_analyzer',
 				},
 				handlers = {
 					lsp_zero.default_setup,
@@ -279,8 +279,9 @@ return {
 					}),
 
 					lspconfig.biome.setup({
+						cmd = { "biome", "lsp-proxy" },
 						single_file_support = false,
-						root_dir = require("lspconfig.util").find_git_ancestor,
+						root_dir = lspconfig.util.root_pattern("biome.json"),
 					}),
 
 					lspconfig.rust_analyzer.setup({
