@@ -34,6 +34,10 @@ map("v", ">", ">gv")
 map("v", "p", '"_dP')
 map("v", "P", '"_dp')
 
+-- delete current selected text without yanking it
+map("v", "d", '"_d')
+map("v", "D", '"_D')
+
 -- Move line on the screen rather than by line in the file
 map("n", "j", "gj", opts)
 map("n", "k", "gk", opts)

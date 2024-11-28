@@ -33,6 +33,11 @@ return {
 					-- ignore writtern message
 					opts = { skip = true },
 				},
+				{
+
+					filter = { event = "notify", find = "^.*WARNING.*vim.treesitter.get_parser.*$" },
+					opts = { skip = true },
+				}
 			},
 			presets = {
 				command_palette = true,
