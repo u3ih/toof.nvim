@@ -38,6 +38,10 @@ map("v", "P", '"_dp')
 map("v", "d", '"_d')
 map("v", "D", '"_D')
 
+-- cut current selected text without enter insert mode
+map("v", "c", 'c<ESC>l')
+map("v", "C", 'C<ESC>')
+
 -- Move line on the screen rather than by line in the file
 map("n", "j", "gj", opts)
 map("n", "k", "gk", opts)

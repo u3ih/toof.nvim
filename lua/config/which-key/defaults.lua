@@ -92,6 +92,7 @@ return {
 	{ "<leader>lp",  "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>",                                desc = "previous diagnostic" },
 	{ "<leader>lr",  " <Esc><Cmd>lua require('telescope').extensions.refactoring.refactors()<CR>", desc = "Refactor" },
 	{ "<leader>lw",  "<cmd>Telescope diagnostics<cr>",                                             desc = "Diagnostics" },
+	{ "<leader>lk",  "<cmd>lua vim.diagnostic.open_float()<cr>",                                   desc = "Show full diagnostics" },
 
 	{ "<leader>m",   group = "Marks" },
 	{ "<leader>mm",  "<cmd>Telescope marks<cr>",                                                   desc = "Marks" },
