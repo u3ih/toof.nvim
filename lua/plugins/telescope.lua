@@ -12,7 +12,9 @@ return {
 			'nvim-telescope/telescope-ui-select.nvim',
 			'telescope-dap.nvim',
 			'kkharji/sqlite.lua',
-			'nvim-telescope/telescope-frecency.nvim',
+			{
+				'nvim-telescope/telescope-frecency.nvim',
+			},
 			"olacin/telescope-cc.nvim",
 			"nvim-telescope/telescope-symbols.nvim",
 			{
