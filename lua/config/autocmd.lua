@@ -77,12 +77,24 @@ api.nvim_create_autocmd(
 -- Use LspAttach autocommand to only map the following keys
 -- after the language server attaches to the current buffer
 api.nvim_create_autocmd('LspAttach', {
-  callback = function(ev)
-    local opts = { buffer = ev.buf }
-    vim.keymap.set('n', '<leader>v', "<cmd>vsplit | lua vim.lsp.buf.definition()<CR>", opts)
+  callback = function(ev, _, result)
+    local client = vim.lsp.get_client_by_id(ev.data.client_id);
+    if client == nil then return; end
+    if client:supports_method("textDocument/completion") then
+      -- vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
+    end
   end,
 })
 
+-- vim.diagnostic.config({ virtual_lines = { current_line = true } })
+
+-- keep update diagnostic in insert mode
+-- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+--   vim.lsp.diagnostic.on_publish_diagnostics, {
+--     -- delay update diagnostics
+--     update_in_insert = true,
+--   }
+-- )
 
 api.nvim_create_autocmd('ColorScheme', {
   callback = function()

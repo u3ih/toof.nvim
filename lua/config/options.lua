@@ -60,14 +60,6 @@ vim.wo.signcolumn = 'yes'
 vim.g.indent_blankline_show_current_context = true
 vim.g.indent_blankline_context_patterns = { 'class', 'function', 'method', 'if', 'while', 'for' }
 
--- keep update diagnostic in insert mode
--- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
---   vim.lsp.diagnostic.on_publish_diagnostics, {
---     -- delay update diagnostics
---     update_in_insert = true,
---   }
--- )
-
 for k, v in pairs(options) do
   vim.opt[k] = v
 end
