@@ -68,7 +68,7 @@ return {
 				ensure_installed = {
 					'ts_ls',
 					"solidity_ls_nomicfoundation",
-					"biome",
+					-- "biome",
 					'eslint',
 					'lua_ls',
 					'jsonls',
@@ -130,11 +130,11 @@ return {
 						},
 					}),
 
-					lspconfig.biome.setup({
-						cmd = { "biome", "lsp-proxy" },
-						single_file_support = false,
-						root_dir = lspconfig.util.root_pattern("biome.json"),
-					}),
+					-- lspconfig.biome.setup({
+					-- 	cmd = { "biome", "lsp-proxy" },
+					-- 	single_file_support = false,
+					-- 	root_dir = lspconfig.util.root_pattern("biome.json"),
+					-- }),
 
 					lspconfig.rust_analyzer.setup({
 						settings = {
