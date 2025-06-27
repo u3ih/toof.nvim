@@ -7,8 +7,21 @@ return {
 		dependencies = {
 			{ 'L3MON4D3/LuaSnip' },
 			{ 'onsails/lspkind.nvim' },
+			{
+				"zbirenbaum/copilot-cmp",
+				config = function(_, opts)
+					local copilot_cmp = require("copilot_cmp")
+					copilot_cmp.setup(opts)
+					-- attach cmp source whenever copilot attaches
+					-- fixes lazy-loading issues with the copilot cmp source
+					-- vim.lsp.on_attach(function()
+					-- 	copilot_cmp._on_insert_enter({})
+					-- end, "copilot")
+				end,
+			}, -- Ensure copilot-cmp loads before cmp
 		},
 		config = function()
+			require("copilot_cmp").setup()
 			require('lsp-zero.cmp').extend({})
 
 			local cmp         = require('cmp')
@@ -16,7 +29,6 @@ return {
 			local icons       = require('utils.icons')
 			local cmp_action  = require('lsp-zero.cmp').action()
 			local cmp_mapping = cmp.mapping
-			local cmp_types   = require('cmp.types.cmp')
 			local luasnip     = require('luasnip')
 			local utils       = require('utils.lsp-utils')
 			cmp.setup({
@@ -88,6 +100,7 @@ return {
 					{
 						name = "copilot",
 						-- keyword_length = 0,
+						group_index = 2,
 						max_item_count = 3,
 						trigger_characters = {
 							{
