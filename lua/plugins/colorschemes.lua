@@ -21,7 +21,7 @@ return {
 						-- peach = "#BD6F3E",
 						-- yellow = "#D8A657",
 						-- green = "#A9B665",
-						-- teal = "#89B482",
+						teal = "#89B482",
 						-- sky = "#89B482",
 						-- sapphire = "#89B482",
 						-- blue = "#7DAEA3",
@@ -115,7 +115,7 @@ return {
 				custom_highlights = function(colors)
 					return {
 						NormalFloat = { bg = colors.crust },
-						FloatBorder = { bg = colors.crust, fg = colors.crust },
+						FloatBorder = { bg = "", fg = colors.blue },
 						VertSplit = { bg = colors.base, fg = colors.surface0 },
 						CursorLineNr = { fg = colors.surface2 },
 						Pmenu = { bg = colors.crust, fg = "" },

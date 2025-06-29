@@ -68,7 +68,7 @@ map("n", "=", ":resize +5<CR>")
 map("n", "-", ":resize -5<CR>")
 
 -- Map enter to ciw in normal mode
-map("n", "<CR>", "ciw", opts)
+-- map("n", "<CR>", "ciw", opts) -- it cause error when press enter in quickfix window
 
 -- map ; to resume last search
 -- map("n", ";", "<cmd>Telescope resume<cr>", opts)

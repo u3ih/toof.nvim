@@ -5,25 +5,75 @@ return {
 		'hrsh7th/nvim-cmp',
 		event = 'InsertEnter',
 		dependencies = {
-			{ 'L3MON4D3/LuaSnip' },
 			{ 'onsails/lspkind.nvim' },
 			{
-				"zbirenbaum/copilot-cmp",
+				-- snippet plugin
+				"L3MON4D3/LuaSnip",
+				dependencies = "rafamadriz/friendly-snippets",
+				opts = { history = true, updateevents = "TextChanged,TextChangedI" },
 				config = function(_, opts)
-					local copilot_cmp = require("copilot_cmp")
-					copilot_cmp.setup(opts)
+					require("luasnip").config.set_config(opts)
+				end,
+			},
+			-- autopairing of (){}[] etc
+			{
+				"windwp/nvim-autopairs",
+				opts = {
+					fast_wrap = {},
+					disable_filetype = { "TelescopePrompt", "vim" },
+				},
+				config = function(_, opts)
+					require("nvim-autopairs").setup(opts)
+
+					-- setup cmp for autopairs
+					local cmp_autopairs = require "nvim-autopairs.completion.cmp"
+					require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
+				end,
+				-- co
+			},
+
+			-- cmp sources plugins
+			{
+				"saadparwaiz1/cmp_luasnip",
+				"hrsh7th/cmp-nvim-lua",
+				"hrsh7th/cmp-nvim-lsp",
+				"hrsh7th/cmp-buffer",
+				"https://codeberg.org/FelipeLema/cmp-async-path.git"
+			},
+			{
+				"zbirenbaum/copilot-cmp",
+				dependencies = { "copilot.lua" },
+				event = { "InsertEnter", "LspAttach" },
+				fix_pairs = true,
+				config = function()
+					require("copilot_cmp").setup()
 					-- attach cmp source whenever copilot attaches
 					-- fixes lazy-loading issues with the copilot cmp source
-					-- vim.lsp.on_attach(function()
-					-- 	copilot_cmp._on_insert_enter({})
-					-- end, "copilot")
+					vim.api.nvim_create_autocmd("LspAttach", {
+						callback = function(args)
+							local buffer = args.buf ---@type number
+							local client = vim.lsp.get_client_by_id(args.data.client_id)
+							if client and (not "copilot" or client.name == "copilot") then
+								return require("copilot_cmp")._on_insert_enter(client, buffer)
+							end
+						end,
+					})
+					local cmp = require "cmp"
+					local current_sources = cmp.get_config().sources or {}
+					table.insert(current_sources, {
+						name = "copilot",
+						priority = 100,
+					})
+					cmp.setup {
+						sources = current_sources,
+					}
 				end,
-			}, -- Ensure copilot-cmp loads before cmp
+			}
 		},
 		config = function()
-			require("copilot_cmp").setup()
 			require('lsp-zero.cmp').extend({})
 
+			-- is ther any code from copi
 			local cmp         = require('cmp')
 			local lspkind     = require('lspkind')
 			local icons       = require('utils.icons')
@@ -43,8 +93,8 @@ return {
 							vim_item.abbr = string.sub(vim_item.abbr, 1, max_width - 1) ..
 									icons.ui.Ellipsis
 						end
-						vim_item.kind = lspkind.presets.default[vim_item.kind] ..
-								" " .. vim_item.kind
+						local kind_icon = lspkind.presets.default[vim_item.kind] or ""
+						vim_item.kind = kind_icon .. " " .. vim_item.kind
 
 						if entry.source.name == "copilot" then
 							vim_item.kind = icons.git.Octoface
@@ -72,15 +122,16 @@ return {
 							copilot = "(Copilot)",
 							treesitter = "(TreeSitter)",
 						})[entry.source.name]
-						-- vim_item.dup = ({
-						-- 	buffer = 1,
-						-- 	path = 1,
-						-- 	nvim_lsp = 0,
-						-- 	luasnip = 1,
-						-- })[entry.source.name] or 0
+						vim_item.dup = ({
+							buffer = 1,
+							path = 1,
+							nvim_lsp = 0,
+							luasnip = 1,
+						})[entry.source.name] or 0
 						return vim_item
 					end,
 				},
+				--
 				snippet = {
 					expand = function(args)
 						luasnip.lsp_expand(args.body)
@@ -91,6 +142,7 @@ return {
 						winhighlight =
 						"Normal:Normal,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
 					}),
+					--
 					documentation = cmp.config.window.bordered({
 						winhighlight =
 						"Normal:Normal,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
@@ -157,7 +209,10 @@ return {
 					['<Tab>'] = cmp_action.luasnip_supertab(),
 					['<S-Tab>'] = cmp_action.luasnip_shift_supertab(),
 					["<C-Space>"] = cmp_mapping.complete(),
-					['<CR>'] = cmp.mapping.confirm({ select = false }),
+					['<C-d>'] = cmp.mapping.scroll_docs(-4),
+					['<C-u>'] = cmp.mapping.scroll_docs(4),
+					['<C-e>'] = cmp.mapping.abort(),
+					['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
 				}
 			})
 		end

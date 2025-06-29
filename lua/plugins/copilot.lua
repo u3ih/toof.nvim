@@ -48,13 +48,13 @@ return {
 		config = function()
 			require("copilot").setup({
 				panel = {
-					enabled = true,
+					enabled = false,
 					auto_refresh = true,
 					keymap = {
 						jump_next = "<c-j>",
 						jump_prev = "<c-k>",
-						accept = "<c-l>",
-						refresh = "r",
+						accept = "<c-]>",
+						refresh = "<leader>f5",
 						open = "<M-CR>",
 					},
 					layout = {
@@ -64,11 +64,11 @@ return {
 				},
 				copilot_node_command = vim.fn.expand("$HOME") .. "/.nvm/versions/node/v20.8.1/bin/node", -- fix node version for copilot
 				suggestion = {
-					enabled = true,
+					enabled = false,
 					auto_trigger = true,
 					debounce = 75,
 					keymap = {
-						accept = "<c-l>",
+						accept = "<c-]>",
 						accept_word = false,
 						accept_line = false,
 						next = "<c-j>",
