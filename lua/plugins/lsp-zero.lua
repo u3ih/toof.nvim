@@ -63,6 +63,7 @@ return {
 					-- "eslint_d"
 				}
 			})
+
 			require('mason-lspconfig').setup({
 				automatic_installation = true,
 				ensure_installed = {
@@ -110,13 +111,16 @@ return {
 					}),
 
 					lspconfig.ts_ls.setup({
-						root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json",
-							"jsconfig.json"),
+						-- root_dir = lspconfig.util.root_pattern('nx.json'),
+						settings = {
+							workingDirectory = {
+								mode = "auto"
+							},
+						},
 						filetypes = { 'javascript', 'javascriptreact', 'typescript',
 							'typescriptreact' },
 						cmd = { "typescript-language-server", "--stdio" },
 					}),
-
 
 					lspconfig.eslint.setup({
 						filetypes = { 'javascript', 'javascriptreact', 'typescript',
@@ -128,6 +132,9 @@ return {
 							format = { enable = true },
 							lint = { enable = true },
 						},
+						on_attach = function(client)
+							client.server_capabilities.definitionProvider = false
+						end,
 					}),
 
 					-- lspconfig.biome.setup({

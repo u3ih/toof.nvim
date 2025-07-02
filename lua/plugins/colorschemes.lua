@@ -21,7 +21,7 @@ return {
 						-- peach = "#BD6F3E",
 						-- yellow = "#D8A657",
 						-- green = "#A9B665",
-						teal = "#89B482",
+						-- teal = "#89B482",
 						-- sky = "#89B482",
 						-- sapphire = "#89B482",
 						-- blue = "#7DAEA3",
