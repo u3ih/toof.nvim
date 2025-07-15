@@ -71,58 +71,58 @@ return {
 				})(ctx)
 			end,
 		},
-		format_on_save = {
-			timeout_ms = 500,
-			lsp_format = 'first',
-			filter = function(client)
-				return client.name == 'eslint'
-			end,
-		},
+		-- format_on_save = {
+		-- 	timeout_ms = 500,
+		-- 	lsp_format = 'first',
+		-- 	filter = function(client)
+		-- 		return client.name == 'eslint'
+		-- 	end,
+		-- },
 		format_after_save = function(bufnr)
 			-- keep eslint-lsp version is 4.8.0 because in 4.10.0 diagnostic cant show eslint message with nvim version < 0.10
-			local eslint_client = vim.lsp.get_clients({ bufnr = bufnr, name = 'eslint' })[1]
-			local biome_lsp = vim.lsp.get_clients({
-				bufnr = bufnr,
-				name = "biome",
-			})[1]
-
-			if eslint_client then
-				local eslint_diag_ns = vim.lsp.diagnostic.get_namespace(eslint_client.id);
-
-				local diag = vim.diagnostic.count(
-					bufnr,
-					{
-						namespace = eslint_diag_ns,
-						severity = {
-							vim.diagnostic.severity.ERROR,
-						}
-					}
-				)
-
-				if #diag > 0 then
-					vim.cmd('EslintFixAll')
-					return
-				end
-			end
-
-			if biome_lsp then
-				local biome_diag_ns = vim.lsp.diagnostic.get_namespace(biome_lsp.id);
-
-				local diag = vim.diagnostic.count(
-					bufnr,
-					{
-						namespace = biome_diag_ns,
-						severity = {
-							vim.diagnostic.severity.ERROR,
-						}
-					}
-				)
-
-				if #diag > 0 then
-					vim.cmd('!npx @biomejs/biome check --write %')
-					return
-				end
-			end
+			-- local eslint_client = vim.lsp.get_clients({ bufnr = bufnr, name = 'eslint' })[1]
+			-- local biome_lsp = vim.lsp.get_clients({
+			-- 	bufnr = bufnr,
+			-- 	name = "biome",
+			-- })[1]
+			--
+			-- if eslint_client then
+			-- 	local eslint_diag_ns = vim.lsp.diagnostic.get_namespace(eslint_client.id);
+			--
+			-- 	local diag = vim.diagnostic.count(
+			-- 		bufnr,
+			-- 		{
+			-- 			namespace = eslint_diag_ns,
+			-- 			severity = {
+			-- 				vim.diagnostic.severity.ERROR,
+			-- 			}
+			-- 		}
+			-- 	)
+			--
+			-- 	if #diag > 0 then
+			-- 		vim.cmd('EslintFixAll')
+			-- 		return
+			-- 	end
+			-- end
+			--
+			-- if biome_lsp then
+			-- 	local biome_diag_ns = vim.lsp.diagnostic.get_namespace(biome_lsp.id);
+			--
+			-- 	local diag = vim.diagnostic.count(
+			-- 		bufnr,
+			-- 		{
+			-- 			namespace = biome_diag_ns,
+			-- 			severity = {
+			-- 				vim.diagnostic.severity.ERROR,
+			-- 			}
+			-- 		}
+			-- 	)
+			--
+			-- 	if #diag > 0 then
+			-- 		vim.cmd('!npx @biomejs/biome check --write %')
+			-- 		return
+			-- 	end
+			-- end
 
 			local function on_format(err)
 				-- if err and err:match("timeout$") then

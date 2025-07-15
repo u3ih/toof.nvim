@@ -26,33 +26,38 @@ return {
 			{ 'WhoIsSethDaniel/mason-tool-installer.nvim' }
 		},
 		config = function()
+			-- Helper function to check node version
+			local function check_node_version()
+				local node_path = vim.fn.expand("$HOME") .. "/.nvm/versions/node/v20.8.1/bin/node"
+				if vim.fn.filereadable(node_path) == 0 then
+					vim.notify("Node v20.8.1 not found at " .. node_path, vim.log.levels.ERROR)
+					vim.notify("Please install nvm, node v20.8.1 to use eslint, ts_ls")
+					return false, node_path
+				end
+				return true, node_path
+			end
+
+			local node_version_ok, node_path = check_node_version()
+
 			local lsp_zero = require('lsp-zero')
-
 			lsp_zero.extend_lspconfig()
-
 			lsp_zero.on_attach(function(client, bufnr)
 				lsp_zero.default_keymaps({ buffer = bufnr })
 				local opts = { buffer = bufnr, silent = true }
-
 				vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
 				vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
 				vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
 				vim.keymap.set('n', 'gi', ':Telescope lsp_implementations<cr>', opts)
-				-- vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
 				vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
 				vim.keymap.set('n', 'gr', '<cmd>Telescope lsp_references<cr>', { buffer = bufnr })
-				-- vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
 				vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
 				vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
-				vim.keymap.set({ 'n', 'x' }, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>',
-					opts)
+				vim.keymap.set({ 'n', 'x' }, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
 				vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
-
 				vim.keymap.set('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>', opts)
 				vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>', opts)
 				vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>', opts)
 			end)
-
 
 			local lspconfig = require('lspconfig')
 
@@ -60,7 +65,6 @@ return {
 			require('mason-tool-installer').setup({
 				ensure_installed = {
 					'prettier',
-					-- "eslint_d"
 				}
 			})
 
@@ -69,7 +73,6 @@ return {
 				ensure_installed = {
 					'ts_ls',
 					"solidity_ls_nomicfoundation",
-					-- "biome",
 					'eslint',
 					'lua_ls',
 					'jsonls',
@@ -95,12 +98,6 @@ return {
 							},
 						},
 					}),
-					-- lspconfig.solidity.setup({
-					-- 	cmd = { "nomicfoundation-solidity-language-server", "--stdio" },
-					-- 	filetypes = { "solidity", "sol" },
-					-- 	root_dir = lspconfig.util.root_pattern("hardhat.config.*", ".git"),
-					-- 	single_file_support = true,
-					-- }),
 					lspconfig.jsonls.setup({
 						settings = {
 							json = {
@@ -111,50 +108,49 @@ return {
 					}),
 
 					lspconfig.ts_ls.setup({
-						-- root_dir = lspconfig.util.root_pattern('nx.json'),
+						single_file_support = true,
 						settings = {
-							workingDirectory = {
-								mode = "auto"
-							},
+							workingDirectory = { mode = "auto" },
 						},
-						filetypes = { 'javascript', 'javascriptreact', 'typescript',
-							'typescriptreact' },
-						cmd = { "typescript-language-server", "--stdio" },
+						filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
+						cmd = {
+							node_path,
+							vim.fn.stdpath("data") ..
+							"/mason/packages/typescript-language-server/node_modules/typescript-language-server/lib/cli.mjs",
+							"--stdio"
+						}
 					}),
 
 					lspconfig.eslint.setup({
-						filetypes = { 'javascript', 'javascriptreact', 'typescript',
-							'typescriptreact' },
+						cmd = {
+							node_path,
+							vim.fn.stdpath("data") ..
+							"/mason/packages/eslint-lsp/node_modules/vscode-langservers-extracted/bin/vscode-eslint-language-server",
+							"--stdio"
+						},
 						settings = {
-							workingDirectory = {
-								mode = "auto"
-							},
+							workingDirectory = { mode = "auto" },
 							format = { enable = true },
 							lint = { enable = true },
+							codeActionOnSave = {
+								enable = false,
+								mode = 'all',
+							},
 						},
 						on_attach = function(client)
 							client.server_capabilities.definitionProvider = false
 						end,
 					}),
 
-					-- lspconfig.biome.setup({
-					-- 	cmd = { "biome", "lsp-proxy" },
-					-- 	single_file_support = false,
-					-- 	root_dir = lspconfig.util.root_pattern("biome.json"),
-					-- }),
-
 					lspconfig.rust_analyzer.setup({
 						settings = {
 							["rust-analyzer"] = {
-								lens = {
-									enable = true,
-								},
+								lens = { enable = true },
 								cargo = {
 									allFeatures = true,
 									loadOutDirsFromCheck = true,
 									runBuildScripts = true,
 								},
-								-- Add clippy lints for Rust.
 								check = {
 									enable = true,
 									allFeatures = true,
@@ -172,14 +168,6 @@ return {
 							},
 						},
 					}),
-
-					-- lspconfig.terraformls.setup({
-					-- 	cmd = { "terraform-ls", "serve" },
-					-- 	filetypes = { "terraform", "tf", "terraform-vars" },
-					-- 	-- root_dir = lspconfig.util.root_pattern(".terraform", ".git"),
-					-- 	root_dir = lspconfig.util.root_pattern("*.tf", "*.terraform", "*.tfvars",
-					-- 		"*.hcl", "*.config"),
-					-- })
 				},
 			})
 
@@ -188,7 +176,6 @@ return {
 			})
 
 			local icons = require('utils.icons')
-
 			vim.diagnostic.config({
 				underline        = true,
 				virtual_text     = true,

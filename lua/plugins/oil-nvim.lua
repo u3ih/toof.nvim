@@ -1,6 +1,26 @@
 return {
 	"stevearc/oil.nvim",
-	dependencies = { "nvim-tree/nvim-web-devicons" },
+	dependencies = {
+		"nvim-tree/nvim-web-devicons",
+		{
+			"benomahony/oil-git.nvim",
+			enabled = false,
+			-- opts = {
+			-- 	highlights = {
+			-- 		OilGitModified = { fg = "#ff0000" }, -- Custom colors
+			-- 	}
+			-- }
+		},
+		{
+			"refractalize/oil-git-status.nvim",
+			config = true,
+			enabled = false,
+		},
+		{
+			"JezerM/oil-lsp-diagnostics.nvim",
+			opts = {}
+		}
+	},
 	opts = {
 		keymaps = {
 			["?"] = "actions.show_help",

@@ -62,7 +62,9 @@ return {
 		-- vscode-js-debug adapter
 		{
 			'microsoft/vscode-js-debug',
-			build = 'npm i && npm run compile vsDebugServerBundle && rm -rf out && mv -f dist out',
+			-- build = 'npm i && npm run compile vsDebugServerBundle && rm -rf out && mv -f dist out',
+			build =
+			'export NVM_DIR="$HOME/.nvm" && . "$NVM_DIR/nvm.sh" && nvm use 20.8.1 && npm i && npm run compile vsDebugServerBundle && rm -rf out && mv -f dist out', -- fix node version
 		},
 		"nvim-telescope/telescope-dap.nvim",
 		"folke/neodev.nvim",
