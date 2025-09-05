@@ -112,6 +112,13 @@ return {
 						settings = {
 							workingDirectory = { mode = "auto" },
 						},
+						init_options = {
+							preferences = {
+								importModuleSpecifierPreference = "non-relative", -- or "shortest"
+								includeCompletionsForModuleExports = true,
+								includeCompletionsWithInsertText = true,
+							},
+						},
 						filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
 						cmd = {
 							node_path,

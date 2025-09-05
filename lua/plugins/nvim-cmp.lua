@@ -122,12 +122,13 @@ return {
 							copilot = "(Copilot)",
 							treesitter = "(TreeSitter)",
 						})[entry.source.name]
-						vim_item.dup = ({
-							buffer = 1,
-							path = 1,
-							nvim_lsp = 0,
-							luasnip = 1,
-						})[entry.source.name] or 0
+						-- Remove show duplicate completion
+						-- vim_item.dup = ({
+						-- 	buffer = 1,
+						-- 	path = 1,
+						-- 	nvim_lsp = 0,
+						-- 	luasnip = 1,
+						-- })[entry.source.name] or 0
 						return vim_item
 					end,
 				},
