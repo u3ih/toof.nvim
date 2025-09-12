@@ -1,3 +1,12 @@
+local function dedupe_ts(client, bufnr)
+	for _, c in ipairs(vim.lsp.get_active_clients { bufnr = bufnr }) do
+		if c.name == client.name and c.id ~= client.id then
+			client.stop() -- kill the newer duplicate
+			return
+		end
+	end
+end
+
 return {
 	{
 		'VonHeikemen/lsp-zero.nvim',
@@ -108,13 +117,16 @@ return {
 					}),
 
 					lspconfig.ts_ls.setup({
+						on_attach = function(client, bufnr)
+							dedupe_ts(client, bufnr)
+						end,
 						single_file_support = true,
 						settings = {
 							workingDirectory = { mode = "auto" },
 						},
 						init_options = {
 							preferences = {
-								importModuleSpecifierPreference = "non-relative", -- or "shortest"
+								importModuleSpecifierPreference = "non-relative",
 								includeCompletionsForModuleExports = true,
 								includeCompletionsWithInsertText = true,
 							},
