@@ -42,6 +42,7 @@ return {
 			},
 			{
 				"zbirenbaum/copilot-cmp",
+				enabled = true,
 				dependencies = { "copilot.lua" },
 				event = { "InsertEnter", "LspAttach" },
 				fix_pairs = true,

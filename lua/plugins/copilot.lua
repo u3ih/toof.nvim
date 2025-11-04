@@ -51,9 +51,9 @@ return {
 					enabled = false,
 					auto_refresh = true,
 					keymap = {
-						jump_next = "<c-j>",
-						jump_prev = "<c-k>",
-						accept = "<c-]>",
+						-- jump_next = "<c-j>",
+						-- jump_prev = "<c-k>",
+						-- accept = "<c-]>",
 						refresh = "<leader>f5",
 						open = "<M-CR>",
 					},
@@ -62,7 +62,7 @@ return {
 						ratio = 0.4,
 					},
 				},
-				copilot_node_command = vim.fn.expand("$HOME") .. "/.nvm/versions/node/v20.8.1/bin/node", -- fix node version for copilot
+				copilot_node_command = vim.fn.expand("$HOME") .. "/.nvm/versions/node/v22.12.0/bin/node", -- fix node version for copilot
 				suggestion = {
 					enabled = false,
 					auto_trigger = true,

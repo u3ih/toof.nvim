@@ -37,10 +37,10 @@ return {
 		config = function()
 			-- Helper function to check node version
 			local function check_node_version()
-				local node_path = vim.fn.expand("$HOME") .. "/.nvm/versions/node/v20.8.1/bin/node"
+				local node_path = vim.fn.expand("$HOME") .. "/.nvm/versions/node/v22.12.0/bin/node"
 				if vim.fn.filereadable(node_path) == 0 then
-					vim.notify("Node v20.8.1 not found at " .. node_path, vim.log.levels.ERROR)
-					vim.notify("Please install nvm, node v20.8.1 to use eslint, ts_ls")
+					vim.notify("Node v22.12.0 not found at " .. node_path, vim.log.levels.ERROR)
+					vim.notify("Please install nvm, node v22.12.0 to use eslint, ts_ls")
 					return false, node_path
 				end
 				return true, node_path
@@ -68,7 +68,7 @@ return {
 				vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>', opts)
 			end)
 
-			local lspconfig = require('lspconfig')
+			local lspconfig = vim.lsp.config
 
 			require('mason').setup({})
 			require('mason-tool-installer').setup({
@@ -92,7 +92,7 @@ return {
 				},
 				handlers = {
 					lsp_zero.default_setup,
-					lspconfig.lua_ls.setup({
+					lspconfig("lua_ls", {
 						settings = {
 							Lua = {
 								diagnostics = {
@@ -107,7 +107,7 @@ return {
 							},
 						},
 					}),
-					lspconfig.jsonls.setup({
+					lspconfig("jsonls", {
 						settings = {
 							json = {
 								schema = require('schemastore').json.schemas(),
@@ -116,7 +116,7 @@ return {
 						}
 					}),
 
-					lspconfig.ts_ls.setup({
+					lspconfig("ts_ls", {
 						on_attach = function(client, bufnr)
 							dedupe_ts(client, bufnr)
 						end,
@@ -140,7 +140,7 @@ return {
 						}
 					}),
 
-					lspconfig.eslint.setup({
+					lspconfig("eslint", {
 						cmd = {
 							node_path,
 							vim.fn.stdpath("data") ..
@@ -161,7 +161,7 @@ return {
 						end,
 					}),
 
-					lspconfig.rust_analyzer.setup({
+					lspconfig("rust_analyzer", {
 						settings = {
 							["rust-analyzer"] = {
 								lens = { enable = true },
