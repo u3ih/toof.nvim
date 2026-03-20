@@ -42,12 +42,12 @@ return {
 			},
 			{
 				"zbirenbaum/copilot-cmp",
-				enabled = true,
+				enabled = false,
 				dependencies = { "copilot.lua" },
 				event = { "InsertEnter", "LspAttach" },
 				fix_pairs = true,
 				config = function()
-					require("copilot_cmp").setup()
+					-- require("copilot_cmp").setup()
 					-- attach cmp source whenever copilot attaches
 					-- fixes lazy-loading issues with the copilot cmp source
 					vim.api.nvim_create_autocmd("LspAttach", {
@@ -69,7 +69,56 @@ return {
 						sources = current_sources,
 					}
 				end,
-			}
+			},
+			{
+				'milanglacier/minuet-ai.nvim',
+				enabled = false,
+				dependencies = { 'nvim-lua/plenary.nvim' },
+				config = function()
+					require('minuet').setup {
+						auto_trigger_ft = {},
+						keymap = {
+							-- accept whole completion
+							accept = '<A-A>',
+							-- accept one line
+							accept_line = '<A-a>',
+							-- accept n lines (prompts for number)
+							-- e.g. "A-z 2 CR" will accept 2 lines
+							accept_n_lines = '<A-z>',
+							-- Cycle to prev completion item, or manually invoke completion
+							prev = '<A-[>',
+							-- Cycle to next completion item, or manually invoke completion
+							next = '<A-]>',
+							dismiss = '<A-e>',
+						},
+						provider = 'gemini',
+						provider_options = {
+							gemini = {
+								-- model = 'gemini-2.0-flash',
+								model = 'gemini-1.5-flash', -- 'gemini-2.0-flash' is also fine if available
+								stream = true,
+								api_key = 'GEMINI_API_KEY',
+							},
+							-- openai_compatible = {
+							-- 	-- good
+							-- 	api_key = 'GEMINI_API_KEY', -- will read the environment variable GEMINI_API_KEY
+							-- }
+						}
+					}
+				end,
+			},
+			{
+				"Exafunction/windsurf.nvim",
+				enabled = true,
+				dependencies = {
+					"nvim-lua/plenary.nvim",
+				},
+				config = function()
+					require("codeium").setup({
+						enable_cmp_source = true,
+					})
+				end
+			},
 		},
 		config = function()
 			require('lsp-zero.cmp').extend({})
@@ -81,7 +130,7 @@ return {
 			local cmp_action  = require('lsp-zero.cmp').action()
 			local cmp_mapping = cmp.mapping
 			local luasnip     = require('luasnip')
-			local utils       = require('utils.lsp-utils')
+			-- local utils       = require('utils.lsp-utils')
 			cmp.setup({
 				matching = {
 					disallow_partial_fuzzy_matching = false
@@ -100,6 +149,11 @@ return {
 						if entry.source.name == "copilot" then
 							vim_item.kind = icons.git.Octoface
 							vim_item.kind_hl_group = "CmpItemKindCopilot"
+						end
+
+						if entry.source.name == "codeium" then
+							vim_item.kind = icons.ui.Codeium
+							vim_item.kind_hl_group = "CmpItemKindCodeium"
 						end
 
 						if entry.source.name == "crates" then
@@ -206,6 +260,10 @@ return {
 					{ name = "treesitter" },
 					-- { name = "crates" },
 					-- { name = "tmux" },
+					-- { name = "minuet" },
+					{
+						name = "codeium"
+					}
 				},
 				mapping = {
 					['<Tab>'] = cmp_action.luasnip_supertab(),

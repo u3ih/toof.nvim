@@ -1,10 +1,7 @@
 return {
     '2kabhishek/exercism.nvim',
     cmd = {
-        'ExercismLanguages',
-        'ExercismList',
-        'ExercismSubmit',
-        'ExercismTest',
+        'Exercism',
     },
     keys = {
         '<leader>exa',

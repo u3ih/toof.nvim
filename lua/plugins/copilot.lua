@@ -1,7 +1,7 @@
 return {
 	{
 		"zbirenbaum/copilot.lua",
-		enabled = true,
+		enabled = false,
 		cmd = "Copilot",
 		event = "InsertEnter",
 		dependencies = {
@@ -62,7 +62,7 @@ return {
 						ratio = 0.4,
 					},
 				},
-				copilot_node_command = vim.fn.expand("$HOME") .. "/.nvm/versions/node/v22.12.0/bin/node", -- fix node version for copilot
+				copilot_node_command = vim.fn.expand("$HOME") .. "/.nvm/versions/node/v24.2.0/bin/node", -- fix node version for copilot
 				suggestion = {
 					enabled = false,
 					auto_trigger = true,

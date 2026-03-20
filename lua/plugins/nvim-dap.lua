@@ -24,7 +24,7 @@ end
 return {
 	'mfussenegger/nvim-dap',
 	lazy = true,
-	enabled = true,
+	enabled = false,
 	dependencies = {
 		{
 			'stevearc/overseer.nvim',

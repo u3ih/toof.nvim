@@ -145,6 +145,7 @@ local M = {
     TriangleShortArrowLeft = "",
     TriangleShortArrowRight = "",
     TriangleShortArrowUp = "",
+    Codeium = ""
   },
   misc = {
     Robot = "ﮧ",

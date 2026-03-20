@@ -1,5 +1,5 @@
 local function dedupe_ts(client, bufnr)
-	for _, c in ipairs(vim.lsp.get_active_clients { bufnr = bufnr }) do
+	for _, c in ipairs(vim.lsp.get_clients { bufnr = bufnr }) do
 		if c.name == client.name and c.id ~= client.id then
 			client.stop() -- kill the newer duplicate
 			return
@@ -37,10 +37,10 @@ return {
 		config = function()
 			-- Helper function to check node version
 			local function check_node_version()
-				local node_path = vim.fn.expand("$HOME") .. "/.nvm/versions/node/v22.12.0/bin/node"
+				local node_path = vim.fn.expand("$HOME") .. "/.nvm/versions/node/v24.2.0/bin/node"
 				if vim.fn.filereadable(node_path) == 0 then
-					vim.notify("Node v22.12.0 not found at " .. node_path, vim.log.levels.ERROR)
-					vim.notify("Please install nvm, node v22.12.0 to use eslint, ts_ls")
+					vim.notify("Node v24.2.0 not found at " .. node_path, vim.log.levels.ERROR)
+					vim.notify("Please install nvm, node v24.2.0 to use eslint, ts_ls")
 					return false, node_path
 				end
 				return true, node_path
@@ -81,12 +81,13 @@ return {
 				automatic_installation = true,
 				ensure_installed = {
 					'ts_ls',
-					"solidity_ls_nomicfoundation",
-					'eslint',
+					-- "solidity_ls_nomicfoundation",
+					'eslint@4.8.0',
 					'lua_ls',
 					'jsonls',
 					'cssls',
-					'vimls',
+					-- 'vimls',
+					"pylsp",
 					'tailwindcss',
 					'rust_analyzer',
 				},
@@ -156,8 +157,14 @@ return {
 								mode = 'all',
 							},
 						},
-						on_attach = function(client)
+						on_attach = function(client, bufnr)
 							client.server_capabilities.definitionProvider = false
+							vim.api.nvim_buf_create_user_command(bufnr, "EslintFixAll", function()
+								vim.lsp.buf.code_action({
+									context = { only = { "source.fixAll.eslint" } },
+									apply = true,
+								})
+							end, { desc = "Fix all eslint errors" })
 						end,
 					}),
 
