@@ -1,12 +1,13 @@
 return {
 	{
 		"zbirenbaum/copilot.lua",
-		enabled = false,
+		enabled = true,
 		cmd = "Copilot",
 		event = "InsertEnter",
 		dependencies = {
 			{
 				"CopilotC-Nvim/CopilotChat.nvim",
+				enabled = false,
 				dependencies = {
 					{ "zbirenbaum/copilot.lua" },              -- or github/copilot.vim
 					{ "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
