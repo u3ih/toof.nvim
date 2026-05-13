@@ -5,19 +5,41 @@ return {
 		opts = {},
 	},
 	{
-		'numToStr/Comment.nvim',
+		"echasnovski/mini.comment",
 		dependencies = {
 			"JoosepAlviste/nvim-ts-context-commentstring"
 		},
 		config = function()
-			vim.o.commentstring = '# %s'
+			require("mini.comment").setup({
+				options = {
+					-- Function to compute custom 'commentstring' (optional)
+					custom_commentstring = function()
+						return require('ts_context_commentstring').calculate_commentstring() or vim.bo.commentstring
+					end,
 
-			require('ts_context_commentstring').setup({
-				enable_autocmd = false,
-			})
+					-- Whether to ignore blank lines in actions and textobject
+					ignore_blank_line = false,
 
-			require('Comment').setup({
-				pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
+					-- Whether to recognize as comment only lines without indent
+					start_of_line = false,
+
+					-- Whether to force single space inner padding for comment parts
+					pad_comment_parts = true,
+				},
+
+				mappings = {
+					-- Default mappings for commenting
+					comment = "gc",
+					comment_line = "gcc",
+					comment_visual = "gc",
+					textobject = "gc",
+				},
+
+				hooks = {
+					-- Hooks that run pre and post commenting actions
+					pre = function() end,
+					post = function() end,
+				},
 			})
 		end
 	},
