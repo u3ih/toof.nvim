@@ -68,7 +68,7 @@ api.nvim_create_autocmd(
   {
     pattern = { "*.txt", "*.md", "*.tex" },
     callback = function()
-      vim.opt.spell = true
+      vim.opt.spell = false
       vim.opt.spelllang = "en,de"
     end,
   }
