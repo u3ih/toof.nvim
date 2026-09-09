@@ -58,6 +58,7 @@ Personal Neovim configuration built on [kickstart.nvim](https://github.com/nvim-
 │   │   ├── render-markdown.lua       # Markdown rendering
 │   │   ├── codesnap.lua              # Code screenshot
 │   │   ├── precognition.lua          # Motion hints
+│   │   ├── bigfile.lua               # Big-file performance guard
 │   │   ├── nvim-leetcode.lua         # LeetCode in Neovim
 │   │   ├── exercism.lua              # Exercism integration
 │   │   └── ...
